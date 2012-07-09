@@ -1,0 +1,11 @@
+body {
+  background-color: gray;
+}
+#fps {
+  float: right;
+}
+#framecounter {
+  color: white;
+  font-size: 10px;
+  font-family: "Courier New";
+}
