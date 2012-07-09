@@ -1,4 +1,21 @@
-define(["src/me", "src/config", "src/resources", "src/PlayScreen", "src/PlayerEntity"], function (me, config, resources, PlayScreen, PlayerEntity) {
+define(
+  [
+    "src/me",
+    "src/config",
+    "src/resources",
+    "src/PlayScreen",
+    "src/PlayerEntity",
+    "src/FlagEntity"
+  ],
+  function (
+    me,
+    config,
+    resources,
+    PlayScreen,
+    PlayerEntity,
+    FlagEntity
+  ) {
+    
   var app = {
     onload: function () {
       document.getElementById("info").style.width = config.display.width + "px";
@@ -11,6 +28,7 @@ define(["src/me", "src/config", "src/resources", "src/PlayScreen", "src/PlayerEn
       me.state.set(me.state.PLAY, new PlayScreen());
 
       me.entityPool.add("player", PlayerEntity);
+      me.entityPool.add("flag", FlagEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");

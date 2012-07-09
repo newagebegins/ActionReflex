@@ -16,6 +16,10 @@ define(function () {
     type: "image",
     src: "images/ball.gif"
   }, {
+    name: "flag",
+    type: "image",
+    src: "images/flag.gif"
+  }, {
     name: "scr001",
     type: "tmx",
     src: "maps/scr001.tmx"
