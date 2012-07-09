@@ -1,4 +1,4 @@
-define(["src/me", "src/config", "src/resources"], function (me, config, resources) {
+define(["src/me", "src/config", "src/resources", "src/PlayScreen"], function (me, config, resources, PlayScreen) {
   var app = {
     onload: function () {
       document.getElementById("info").style.width = config.display.width + "px";
@@ -8,7 +8,8 @@ define(["src/me", "src/config", "src/resources"], function (me, config, resource
       me.state.change(me.state.LOADING);
     },
     loaded: function () {
-
+      me.state.set(me.state.PLAY, new PlayScreen());
+      me.state.change(me.state.PLAY);
     },
   };
 
