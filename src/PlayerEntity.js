@@ -32,8 +32,7 @@ define(["src/me", "src/global"], function (me, global) {
 
       // prevent moving through the sprite
       if (res) {
-        this.pos.x -= res.x;
-        this.pos.y -= res.y;
+        this.pos.sub(res);
       }
 
       // update animation
