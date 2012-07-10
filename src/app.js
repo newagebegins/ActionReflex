@@ -7,7 +7,6 @@ define(
     "src/PlayerEntity",
     "src/FlagEntity",
     "src/CannonEntity",
-    "src/BulletEntity",
   ],
   function (
     me,
@@ -16,8 +15,7 @@ define(
     PlayScreen,
     PlayerEntity,
     FlagEntity,
-    CannonEntity,
-    BulletEntity
+    CannonEntity
   ) {
     
   var app = {
@@ -38,6 +36,8 @@ define(
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");
       me.input.bindKey(me.input.KEY.UP, "jump");
+      
+//      me.debug.renderHitBox = true;
 
       me.state.change(me.state.PLAY);
     },

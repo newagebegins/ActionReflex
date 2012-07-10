@@ -8,6 +8,9 @@ define(["src/me", "src/BulletEntity"], function (me, BulletEntity) {
       
       this.bulletTimer = 0;
       this.bulletDuration = 100;
+      
+      this.collidable = true;
+      this.updateColRect(16, 48, 0, 48);
     },
     update: function () {
       this.bulletTimer++;
