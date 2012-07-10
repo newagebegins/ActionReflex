@@ -37,8 +37,11 @@ define(["src/me", "src/global"], function (me, global) {
       }
 
       // update animation
+      if (this.vel.x != 0) {
+        this.parent();
+      }
+      
       if (this.vel.x != 0 || this.vel.y != 0) {
-        this.parent(this);
         return true;
       }
 
