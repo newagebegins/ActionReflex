@@ -29,5 +29,6 @@
  </objectgroup>
  <objectgroup name="EntitiesForeground" width="16" height="9">
   <object name="flag" x="224" y="192" width="32" height="32"/>
+  <object name="cannon" x="320" y="96" width="32" height="32"/>
  </objectgroup>
 </map>

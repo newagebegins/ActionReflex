@@ -20,6 +20,14 @@ define(function () {
     type: "image",
     src: "images/flag.gif"
   }, {
+    name: "cannon",
+    type: "image",
+    src: "images/cannon.gif"
+  }, {
+    name: "bullet",
+    type: "image",
+    src: "images/bullet.gif"
+  }, {
     name: "scr001",
     type: "tmx",
     src: "maps/scr001.tmx"
