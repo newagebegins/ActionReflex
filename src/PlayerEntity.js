@@ -3,6 +3,7 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
   var INITIAL_Y_VELOCITY = 4;
   var VELOCITY_INC = 1.3;
   var APPEAR_DISAPPEAR_DURATION = 1200;
+  var MAX_X_VEL_COEFF = 0.625;
 
   var PlayerEntity = me.ObjectEntity.extend({
     init: function (x, y) {
@@ -40,11 +41,6 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
         return true;
       }
 
-      if (me.input.isKeyPressed('left')) {
-        this.doWalk(true);
-      } else if (me.input.isKeyPressed('right')) {
-        this.doWalk(false);
-      }
       if (me.input.isKeyPressed('jump')) {
         this.doJump();
       }
@@ -60,11 +56,35 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
           }
         } else {
           this.maxVel.y -= VELOCITY_INC;
-          if (this.maxVel.y > INITIAL_Y_VELOCITY) {
+          if (this.isBouncing()) {
             this.forceJump();
           } else {
             this.maxVel.y = INITIAL_Y_VELOCITY;
           }
+        }
+      }
+      
+      if (collision.y) {
+        if (me.input.isKeyPressed('left')) {
+          if (this.isBouncing()) {
+            this.vel.x = -this.maxVel.y;
+            this.maxVel.x = this.maxVel.y * MAX_X_VEL_COEFF;
+          }
+          else {
+            this.doWalk(true);
+          }
+        }
+        else if (me.input.isKeyPressed('right')) {
+          if (this.isBouncing()) {
+            this.vel.x = this.maxVel.y;
+            this.maxVel.x = this.maxVel.y * MAX_X_VEL_COEFF;
+          }
+          else {
+            this.doWalk(false);
+          }
+        }
+        else if (this.isBouncing()) {
+          this.vel.x = 0;
         }
       }
 
@@ -94,6 +114,9 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
       }
 
       return false;
+    },
+    isBouncing: function () {
+      return this.maxVel.y > INITIAL_Y_VELOCITY;
     },
     onAfterDisappearEvent: function () {
       me.levelDirector.reloadLevel();
