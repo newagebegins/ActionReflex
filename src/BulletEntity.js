@@ -8,7 +8,6 @@ define(["src/me"], function (me) {
       this.parent(x, y, settings);
 
       this.setVelocity(0, 2);
-      this.z = 6;
     },
     update: function () {
       var collision = this.updateMovement();

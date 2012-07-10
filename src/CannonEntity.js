@@ -19,7 +19,7 @@ define(["src/me", "src/global", "src/BulletEntity"], function (me, global, Bulle
       this.bulletTimer++;
       if (this.bulletTimer >= this.bulletDuration) {
         this.bulletTimer = 0;
-        me.game.add(new BulletEntity(this.pos.x + 32, this.pos.y + 32));
+        me.game.add(new BulletEntity(this.pos.x + 32, this.pos.y + 32), this.z);
         me.game.sort();
       }
       return false;
