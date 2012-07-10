@@ -7,6 +7,7 @@ define(
     "src/PlayerEntity",
     "src/FlagEntity",
     "src/CannonEntity",
+    "src/TubeEntity",
   ],
   function (
     me,
@@ -15,7 +16,8 @@ define(
     PlayScreen,
     PlayerEntity,
     FlagEntity,
-    CannonEntity
+    CannonEntity,
+    TubeEntity
   ) {
     
   var app = {
@@ -32,6 +34,7 @@ define(
       me.entityPool.add("player", PlayerEntity);
       me.entityPool.add("flag", FlagEntity);
       me.entityPool.add("cannon", CannonEntity);
+      me.entityPool.add("tube", TubeEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");

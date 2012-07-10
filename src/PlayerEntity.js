@@ -1,6 +1,7 @@
-define(["src/me"], function (me) {
+define(["src/me", "src/global"], function (me, global) {
   var PlayerEntity = me.ObjectEntity.extend({
-    init: function (x, y, settings) {
+    init: function (x, y) {
+      var settings = {};
       settings.image = "ball";
       settings.spritewidth = 32;
 
@@ -10,6 +11,10 @@ define(["src/me"], function (me) {
       this.animationspeed = 1;
     },
     update: function () {
+      if (global.ballAppearing) {
+        return false;
+      }
+      
       if (me.input.isKeyPressed('left')) {
         this.doWalk(true);
       } else if (me.input.isKeyPressed('right')) {

@@ -1,10 +1,10 @@
-define(["src/me", "src/BulletEntity"], function (me, BulletEntity) {
+define(["src/me", "src/global", "src/BulletEntity"], function (me, global, BulletEntity) {
   var CannonEntity = me.ObjectEntity.extend({
     init: function (x, y, settings) {
       settings.image = "cannon";
       settings.spritewidth = 64;
 
-      this.parent(x, y, settings);
+      this.parent(x, y + 32, settings);
       
       this.bulletTimer = 0;
       this.bulletDuration = 100;
@@ -13,6 +13,9 @@ define(["src/me", "src/BulletEntity"], function (me, BulletEntity) {
       this.updateColRect(16, 48, 0, 48);
     },
     update: function () {
+      if (global.ballAppearing) {
+        return false;
+      }
       this.bulletTimer++;
       if (this.bulletTimer >= this.bulletDuration) {
         this.bulletTimer = 0;

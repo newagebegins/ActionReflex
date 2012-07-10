@@ -28,6 +28,10 @@ define(function () {
     type: "image",
     src: "images/bullet.gif"
   }, {
+    name: "tube",
+    type: "image",
+    src: "images/tube.gif"
+  }, {
     name: "scr001",
     type: "tmx",
     src: "maps/scr001.tmx"
