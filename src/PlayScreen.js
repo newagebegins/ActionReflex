@@ -29,10 +29,14 @@ define(
     },
     createBall: function (oldBall) {
       if (oldBall) {
-        var x = 448;
+        var x;
         if (oldBall.right >= 480) {
           x = 32;
         }
+        else {
+          x = 448;
+        }
+        this.spawnPosition = { x: x, y: 192 };
         var ball = new PlayerEntity(x, oldBall.pos.y + 15);
         ball.vel = oldBall.vel;
         ball.maxVel = oldBall.maxVel;
@@ -65,7 +69,13 @@ define(
           tubeMoveDown.start();
         }
         else {
-          ball.pos.y = BALL_DESTINATION_Y;
+          if (this.spawnPosition) {
+            ball.pos.x = this.spawnPosition.x;
+            ball.pos.y = this.spawnPosition.y;
+          }
+          else {
+            ball.pos.y = BALL_DESTINATION_Y;
+          }
         }
       }
     },
