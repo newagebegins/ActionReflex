@@ -71,11 +71,17 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
       this.animationspeed = this.vel.x == 0 ? 0 : 1 / Math.abs(this.vel.x);
 
       var res = me.game.collide(this);
-
-      if (res && res.type == "lethal") {
-        this.setCurrentAnimation("disappear");
-        global.ballState = "disappear";
-        util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
+      
+      if (res) {
+        if (res.obj.name == "portal") {
+          me.levelDirector.loadLevel(res.obj.to);
+          me.state.current().createBall(this);
+        }
+        else if (res.type == "lethal") {
+          this.setCurrentAnimation("disappear");
+          global.ballState = "disappear";
+          util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
+        }
       }
 
       if (this.vel.x != 0) {
