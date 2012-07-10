@@ -4,7 +4,6 @@ define(
     "src/config",
     "src/resources",
     "src/PlayScreen",
-    "src/PlayerEntity",
     "src/FlagEntity",
     "src/CannonEntity",
     "src/TubeEntity",
@@ -14,7 +13,6 @@ define(
     config,
     resources,
     PlayScreen,
-    PlayerEntity,
     FlagEntity,
     CannonEntity,
     TubeEntity
@@ -31,7 +29,6 @@ define(
     loaded: function () {
       me.state.set(me.state.PLAY, new PlayScreen());
 
-      me.entityPool.add("player", PlayerEntity);
       me.entityPool.add("flag", FlagEntity);
       me.entityPool.add("cannon", CannonEntity);
       me.entityPool.add("tube", TubeEntity);

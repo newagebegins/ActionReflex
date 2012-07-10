@@ -72,15 +72,10 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
 
       var res = me.game.collide(this);
 
-      if (res) {
-        if (res.type == "lethal") {
-          this.setCurrentAnimation("disappear");
-          global.ballState = "disappear";
-          util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
-        } else {
-          // prevent moving through the sprite
-          this.pos.sub(res);
-        }
+      if (res && res.type == "lethal") {
+        this.setCurrentAnimation("disappear");
+        global.ballState = "disappear";
+        util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
       }
 
       if (this.vel.x != 0) {

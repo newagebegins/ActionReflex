@@ -4,9 +4,9 @@ define(function () {
     type: "image",
     src: "images/tiles.gif"
   }, {
-    name: "metatiles32x32",
+    name: "metatiles",
     type: "image",
-    src: "images/metatiles32x32.png"
+    src: "images/metatiles.png"
   }, {
     name: "border",
     type: "image",

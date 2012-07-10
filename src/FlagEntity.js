@@ -4,7 +4,7 @@ define(["src/me", "src/global"], function (me, global) {
       settings.image = "flag";
       settings.spritewidth = 32;
 
-      this.parent(x, y, settings);
+      this.parent(x, y + 32, settings);
     },
     update: function () {
       if (global.ballState != "normal") {
