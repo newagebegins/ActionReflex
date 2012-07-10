@@ -1,4 +1,4 @@
-define(["src/me"], function (me) {
+define(["src/me", "src/global"], function (me, global) {
   var BulletEntity = me.ObjectEntity.extend({
     init: function (x, y) {
       var settings = {};
@@ -8,8 +8,16 @@ define(["src/me"], function (me) {
       this.parent(x, y, settings);
 
       this.setVelocity(0, 2);
+      
+      this.collidable = true;
+      this.updateColRect(4, 8, 0, 10);
+      this.type = "lethal";
     },
     update: function () {
+      if (global.ballState != "normal") {
+        return false;
+      }
+      
       var collision = this.updateMovement();
 
       if (collision.y) {

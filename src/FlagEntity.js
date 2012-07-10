@@ -7,7 +7,7 @@ define(["src/me", "src/global"], function (me, global) {
       this.parent(x, y, settings);
     },
     update: function () {
-      if (global.ballAppearing) {
+      if (global.ballState != "normal") {
         return false;
       }
       this.parent();

@@ -1,3 +1,3 @@
 define({
-  ballAppearing: false,
+  ballState: "normal",
 });

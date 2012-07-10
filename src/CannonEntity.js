@@ -13,9 +13,10 @@ define(["src/me", "src/global", "src/BulletEntity"], function (me, global, Bulle
       this.updateColRect(16, 48, 0, 48);
     },
     update: function () {
-      if (global.ballAppearing) {
+      if (global.ballState != "normal") {
         return false;
       }
+      
       this.bulletTimer++;
       if (this.bulletTimer >= this.bulletDuration) {
         this.bulletTimer = 0;

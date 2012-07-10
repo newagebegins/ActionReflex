@@ -34,8 +34,8 @@ define(
       me.game.add(ball, tube.z);
       me.game.sort();
       
-      if (config.ballAppearAnimation) {
-        global.ballAppearing = true;
+      if (config.ballAppearThroughTubeAnimation && global.ballState == "normal") {
+        global.ballState = "appearThroughTube";
       
         var tubeInitialY = tube.pos.y;
         var tubeMoveDown = new me.Tween(tube.pos).to({y: 79 }, 1200).delay(1000);
@@ -43,7 +43,7 @@ define(
         var tubeMoveUp = new me.Tween(tube.pos)
           .to({y: tubeInitialY }, 1200)
           .onComplete(function () {
-            global.ballAppearing = false;
+            global.ballState = "normal";
           });
 
         tubeMoveDown.chain(ballMoveDown);

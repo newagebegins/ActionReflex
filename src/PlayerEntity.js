@@ -1,13 +1,15 @@
-define(["src/me", "src/global"], function (me, global) {
+define(["src/me", "src/global", "src/util"], function (me, global, util) {
   var MAX_Y_VELOCITY = 11;
   var INITIAL_Y_VELOCITY = 4;
   var VELOCITY_INC = 1.3;
-  
+  var APPEAR_DISAPPEAR_DURATION = 1200;
+
   var PlayerEntity = me.ObjectEntity.extend({
     init: function (x, y) {
       var settings = {};
       settings.image = "ball";
       settings.spritewidth = 32;
+      settings.spriteheight = 32;
 
       this.parent(x, y, settings);
 
@@ -15,10 +17,27 @@ define(["src/me", "src/global"], function (me, global) {
       this.accel.x = 0.1;
       this.friction.x = 0.04;
       this.gravity = 0.5;
+
+      this.addAnimation("move", [0,1,2,3]);
+      this.addAnimation("appear", [4,5,6,7]);
+      this.addAnimation("disappear", [7,6,5,4]);
+      
+      if (global.ballState == "appearAfterDeath") {
+        this.setCurrentAnimation("appear");
+        util.delay(this.onAfterAppearAfterDeathEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
+      } else {
+        this.setCurrentAnimation("move");
+      }
     },
     update: function () {
-      if (global.ballAppearing) {
+      if (global.ballState == "appearThroughTube") {
         return false;
+      }
+      
+      if (global.ballState == "appearAfterDeath" || global.ballState == "disappear") {
+        this.animationspeed = 1;
+        this.parent();
+        return true;
       }
 
       if (me.input.isKeyPressed('left')) {
@@ -43,8 +62,7 @@ define(["src/me", "src/global"], function (me, global) {
           this.maxVel.y -= VELOCITY_INC;
           if (this.maxVel.y > INITIAL_Y_VELOCITY) {
             this.forceJump();
-          }
-          else {
+          } else {
             this.maxVel.y = INITIAL_Y_VELOCITY;
           }
         }
@@ -54,13 +72,19 @@ define(["src/me", "src/global"], function (me, global) {
 
       var res = me.game.collide(this);
 
-      // prevent moving through the sprite
       if (res) {
-        this.pos.sub(res);
+        if (res.type == "lethal") {
+          this.setCurrentAnimation("disappear");
+          global.ballState = "disappear";
+          util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
+        } else {
+          // prevent moving through the sprite
+          this.pos.sub(res);
+        }
       }
 
-      // update animation
       if (this.vel.x != 0) {
+        // update animation
         this.parent();
       }
 
@@ -69,6 +93,15 @@ define(["src/me", "src/global"], function (me, global) {
       }
 
       return false;
+    },
+    onAfterDisappearEvent: function () {
+      me.levelDirector.reloadLevel();
+      global.ballState = "appearAfterDeath";
+      me.state.current().createBall();
+    },
+    onAfterAppearAfterDeathEvent: function () {
+      global.ballState = "normal";
+      this.setCurrentAnimation("move");
     },
   });
 
