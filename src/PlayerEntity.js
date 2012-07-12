@@ -16,6 +16,7 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
 
       this.setVelocity(3, INITIAL_Y_VELOCITY);
       this.accel.x = 0.1;
+      this.accel.y = 0;
       this.friction.x = 0.04;
       this.gravity = 0.5;
 
@@ -40,7 +41,7 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
         this.parent();
         return true;
       }
-
+      
       if (me.input.isKeyPressed('jump')) {
         this.doJump();
       }
@@ -87,6 +88,11 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
           this.vel.x = 0;
         }
       }
+      
+      if (collision.x && !collision.y) {
+        // bounce off walls
+        this.vel.x = -this.lastVel.x;
+      }
 
       this.animationspeed = this.vel.x == 0 ? 0 : 1 / Math.abs(this.vel.x);
 
@@ -108,6 +114,8 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
         // update animation
         this.parent();
       }
+      
+      this.lastVel = this.vel.clone();
 
       if (this.vel.x != 0 || this.vel.y != 0) {
         return true;
