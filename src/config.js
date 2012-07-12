@@ -4,4 +4,5 @@ define({
     height: 384,
   },
   ballAppearThroughTubeAnimation: true,
+  startScreen: "scr001",
 });

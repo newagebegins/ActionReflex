@@ -48,6 +48,10 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
 
       var falling = this.falling;
       var collision = this.updateMovement();
+      
+      if (collision.y && collision.yprop.subtype == "lethal") {
+        this.disappear();
+      }
 
       if (collision.y && falling) {
         if (me.input.isKeyPressed('jump')) {
@@ -104,9 +108,7 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
           me.state.current().createBall(this);
         }
         else if (res.type == "lethal") {
-          this.setCurrentAnimation("disappear");
-          global.ballState = "disappear";
-          util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
+          this.disappear();
         }
       }
 
@@ -134,6 +136,11 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
     onAfterAppearAfterDeathEvent: function () {
       global.ballState = "normal";
       this.setCurrentAnimation("move");
+    },
+    disappear: function () {
+      this.setCurrentAnimation("disappear");
+      global.ballState = "disappear";
+      util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
     },
   });
 
