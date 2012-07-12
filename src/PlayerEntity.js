@@ -19,7 +19,7 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
       this.accel.y = 0;
       this.friction.x = 0.04;
       this.gravity = 0.5;
-
+      
       this.addAnimation("move", [0,1,2,3]);
       this.addAnimation("appear", [4,5,6,7]);
       this.addAnimation("disappear", [7,6,5,4]);
@@ -30,6 +30,8 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
       } else {
         this.setCurrentAnimation("move");
       }
+      
+      global.ball = this;
     },
     update: function () {
       if (global.ballState == "appearThroughTube") {
@@ -48,10 +50,6 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
 
       var falling = this.falling;
       var collision = this.updateMovement();
-      
-      if (collision.y && collision.yprop.subtype == "lethal") {
-        this.disappear();
-      }
 
       if (collision.y && falling) {
         if (me.input.isKeyPressed('jump')) {
@@ -109,6 +107,11 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
         }
         else if (res.type == "lethal") {
           this.disappear();
+        }
+        else if (res.obj.name == "glove") {
+          this.vel.x = 0;
+          this.maxVel.y = 15;
+          this.forceJump();
         }
       }
 

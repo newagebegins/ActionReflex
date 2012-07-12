@@ -1,4 +1,4 @@
-define(["src/me", "src/global"], function (me, global) {
+define(["src/me"], function (me) {
   var PortalEntity = me.InvisibleEntity.extend({
     init: function (x, y, settings) {
       this.parent(x, y, settings);

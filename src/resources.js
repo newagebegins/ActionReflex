@@ -41,6 +41,21 @@ define(function () {
       src: "images/tube.gif"
     },
     {
+      name: "glove_box",
+      type: "image",
+      src: "images/glove_box.gif"
+    },
+    {
+      name: "glove",
+      type: "image",
+      src: "images/glove.gif"
+    },
+    {
+      name: "spikes",
+      type: "image",
+      src: "images/spikes.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"

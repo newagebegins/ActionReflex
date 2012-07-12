@@ -8,6 +8,8 @@ define(
     "src/CannonEntity",
     "src/TubeEntity",
     "src/PortalEntity",
+    "src/GloveBoxEntity",
+    "src/SpikesEntity",
   ],
   function (
     me,
@@ -17,7 +19,9 @@ define(
     FlagEntity,
     CannonEntity,
     TubeEntity,
-    PortalEntity
+    PortalEntity,
+    GloveBoxEntity,
+    SpikesEntity
   ) {
     
   var app = {
@@ -35,12 +39,14 @@ define(
       me.entityPool.add("cannon", CannonEntity);
       me.entityPool.add("tube", TubeEntity);
       me.entityPool.add("portal", PortalEntity);
+      me.entityPool.add("glove_box", GloveBoxEntity);
+      me.entityPool.add("spikes", SpikesEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");
       me.input.bindKey(me.input.KEY.UP, "jump");
       
-//      me.debug.renderHitBox = true;
+      me.debug.renderHitBox = config.debug;
 
       me.state.change(me.state.PLAY);
     },

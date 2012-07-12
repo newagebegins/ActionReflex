@@ -37,7 +37,7 @@ define(
           x = 448;
         }
         this.spawnPosition = { x: x, y: 192 };
-        var ball = new PlayerEntity(x, oldBall.pos.y + 15);
+        var ball = new PlayerEntity(x, oldBall.pos.y + 16);
         ball.vel = oldBall.vel;
         ball.maxVel = oldBall.maxVel;
         ball.jumping = oldBall.jumping;
@@ -81,7 +81,7 @@ define(
           }
         }
         else {
-          var ball = new PlayerEntity(32, 192 + 15);
+          var ball = new PlayerEntity(32, 192 + 16);
           me.game.add(ball, 1);
           me.game.sort();
         }
