@@ -68,7 +68,11 @@ define(["src/me", "src/config", "src/global", "src/util"], function (me, config,
       if (this.jumping) {
         this.maxVel.y -= 0.3;
       }
-
+      
+      if (collision.y < 0) {
+        this.maxVel.y -= 2;
+      }
+      
       if (collision.y && falling) {
         if (me.input.isKeyPressed('jump')) {
           this.maxVel.y += 3;
