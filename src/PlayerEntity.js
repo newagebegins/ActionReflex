@@ -1,4 +1,4 @@
-define(["src/me", "src/global", "src/util"], function (me, global, util) {
+define(["src/me", "src/config", "src/global", "src/util"], function (me, config, global, util) {
   var MAX_Y_VELOCITY = 11;
   var INITIAL_Y_VELOCITY = 4;
   var VELOCITY_INC = 1.3;
@@ -11,8 +11,10 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
       settings.image = "ball";
       settings.spritewidth = 32;
       settings.spriteheight = 32;
-
-      this.parent(x, y, settings);
+      
+      this.parent(x, y + 16, settings);
+      
+      this.font = new me.Font('century gothic', 8, 'white');
 
       this.setVelocity(3, INITIAL_Y_VELOCITY);
       this.accel.x = 0.1;
@@ -49,16 +51,31 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
       }
 
       var falling = this.falling;
+      var velY = this.vel.y;
       var collision = this.updateMovement();
+      
+      if (velY == 0 && this.vel.y > 0) {
+        this.falling = true;
+      }
+      
+      if (this.falling) {
+        this.maxVel.y += 0.2;
+        if (this.maxVel.y > MAX_Y_VELOCITY) {
+          this.maxVel.y = MAX_Y_VELOCITY;
+        }
+      }
+      
+      if (this.jumping) {
+        this.maxVel.y -= 0.3;
+      }
 
       if (collision.y && falling) {
         if (me.input.isKeyPressed('jump')) {
-          this.maxVel.y += VELOCITY_INC;
+          this.maxVel.y += 3;
           if (this.maxVel.y > MAX_Y_VELOCITY) {
             this.maxVel.y = MAX_Y_VELOCITY;
           }
         } else {
-          this.maxVel.y -= VELOCITY_INC;
           if (this.isBouncing()) {
             this.forceJump();
           } else {
@@ -144,6 +161,14 @@ define(["src/me", "src/global", "src/util"], function (me, global, util) {
       this.setCurrentAnimation("disappear");
       global.ballState = "disappear";
       util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
+    },
+    draw: function (context) {
+      this.parent(context);
+      if (config.debug) {
+        var text = "x:" + this.pos.x.round(0) + "; y:" + this.pos.y.round(0);
+        this.font.draw(context, text, this.pos.x - 3, this.pos.y - 15);
+        this.font.draw(context, "maxVel.y:" + this.maxVel.y.round(2), this.pos.x - 3, this.pos.y - 5);
+      }
     },
   });
 

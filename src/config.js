@@ -6,4 +6,5 @@ define({
   },
   ballAppearThroughTubeAnimation: true,
   startScreen: "scr001",
+  startPosition: null,
 });

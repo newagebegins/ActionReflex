@@ -22,7 +22,12 @@ define(
       me.game.addHUD(0, 0, config.display.width, config.display.height);
       me.game.HUD.addItem("border", new PlayScreenBorder(0, 0));
       
-      this.spawnPosition = { x: 32, y: 192 + 16 };
+      if (config.startPosition) {
+        this.spawnPosition = { x: config.startPosition.x, y: config.startPosition.y };
+      }
+      else {
+        this.spawnPosition = { x: 32, y: 192 };
+      }
       
       this.createBall();
     },
@@ -40,7 +45,8 @@ define(
           x = 448;
         }
         this.spawnPosition.x = x;
-        ball = new PlayerEntity(x, oldBall.pos.y + 16);
+        this.spawnPosition.y = 192;
+        ball = new PlayerEntity(x, oldBall.pos.y);
         ball.vel = oldBall.vel;
         ball.maxVel = oldBall.maxVel;
         ball.jumping = oldBall.jumping;
@@ -59,6 +65,7 @@ define(
 
           if (config.ballAppearThroughTubeAnimation && global.ballState == "normal") {
             global.ballState = "appearThroughTube";
+            this.spawnPosition = { x: tube.pos.x, y: BALL_DESTINATION_Y };
 
             var tubeInitialY = tube.pos.y;
             var tubeMoveDown = new me.Tween(tube.pos).to({y: 79 }, 1200).delay(1000);
@@ -74,13 +81,8 @@ define(
             tubeMoveDown.start();
           }
           else {
-            if (this.spawnPosition) {
-              ball.pos.x = this.spawnPosition.x;
-              ball.pos.y = this.spawnPosition.y;
-            }
-            else {
-              ball.pos.y = BALL_DESTINATION_Y;
-            }
+            ball.pos.x = this.spawnPosition.x;
+            ball.pos.y = this.spawnPosition.y;
           }
         }
         else {
