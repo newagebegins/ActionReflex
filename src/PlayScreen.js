@@ -21,17 +21,17 @@ define(
   var PlayScreen = me.ScreenObject.extend({
     
     onResetEvent: function () {
-      me.levelDirector.loadLevel(config.startScreen);
+      this.loadLevel(config.startScreen);
 
       me.game.addHUD(0, 0, config.display.width, config.display.height);
       me.game.HUD.addItem("border", new PlayScreenBorder(0, 0));
       me.game.HUD.addItem("score", new Score(365, 376));
       
       if (config.startPosition) {
-        this.spawnPosition = { x: config.startPosition.x, y: config.startPosition.y };
+        this.spawnPosition = {x: config.startPosition.x, y: config.startPosition.y};
       }
       else {
-        this.spawnPosition = { x: 32, y: BALL_FLOOR_Y };
+        this.spawnPosition = {x: 32, y: BALL_FLOOR_Y};
       }
       
       this.createBall();
@@ -39,6 +39,26 @@ define(
     
     onDestroyEvent: function () {
       me.game.disableHUD();
+    },
+    
+    loadLevel: function (level) {
+      me.levelDirector.loadLevel(level);
+      this.removeCollectedPoints();
+    },
+    
+    reloadLevel: function () {
+      me.levelDirector.reloadLevel();
+      this.removeCollectedPoints();
+    },
+    
+    /** @private */
+    removeCollectedPoints: function () {
+      var points = me.game.getEntityByName("points");
+      for (var i in points) {
+        if (global.collectedPoints[points[i].GUID]) {
+          me.game.remove(points[i]);
+        }
+      }
     },
     
     createBall: function (oldBall) {
@@ -103,13 +123,13 @@ define(
 
       if (config.ballAppearThroughTubeAnimation && global.ballState == "normal") {
         global.ballState = "appearThroughTube";
-        this.spawnPosition = { x: tube.pos.x, y: BALL_FLOOR_Y };
+        this.spawnPosition = {x: tube.pos.x, y: BALL_FLOOR_Y};
 
         var tubeInitialY = tube.pos.y;
-        var tubeMoveDown = new me.Tween(tube.pos).to({y: 79 }, 1200).delay(1000);
-        var ballMoveDown = new me.Tween(global.ball.pos).to({y: BALL_FLOOR_Y }, 1200);
+        var tubeMoveDown = new me.Tween(tube.pos).to({y: 79}, 1200).delay(1000);
+        var ballMoveDown = new me.Tween(global.ball.pos).to({y: BALL_FLOOR_Y}, 1200);
         var tubeMoveUp = new me.Tween(tube.pos)
-          .to({y: tubeInitialY }, 1200)
+          .to({y: tubeInitialY}, 1200)
           .onComplete(function () {
             global.ballState = "normal";
           });
