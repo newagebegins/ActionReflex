@@ -11,6 +11,7 @@ define(
     "src/GloveBoxEntity",
     "src/SpikesEntity",
     "src/WaterEntity",
+    "src/PitEntity",
   ],
   function (
     me,
@@ -23,7 +24,8 @@ define(
     PortalEntity,
     GloveBoxEntity,
     SpikesEntity,
-    WaterEntity
+    WaterEntity,
+    PitEntity
   ) {
     
   var app = {
@@ -44,6 +46,7 @@ define(
       me.entityPool.add("glove_box", GloveBoxEntity);
       me.entityPool.add("spikes", SpikesEntity);
       me.entityPool.add("water", WaterEntity);
+      me.entityPool.add("pit", PitEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");

@@ -150,7 +150,7 @@ define(
           this.maxVel.y = 15;
           this.forceJump();
         }
-        else if (res.obj.name == "water" && global.ballState != "drown") {
+        else if ((res.obj.name == "water" || res.obj.name == "pit") && global.ballState != "drown") {
           this.drown(res.obj);
         }
       }
@@ -190,26 +190,43 @@ define(
       util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
     },
     
-    drown: function (water) {
+    drown: function (obj) {
       var self = this;
       global.ballState = "drown";
       
+      if (obj.name == "water") {
+        this.pos.x = obj.pos.x - 16;
+      }
+      else {
+        if (this.vel.x > 0) {
+          this.pos.x = obj.pos.x;
+        }
+        else {
+          this.pos.x = obj.right - this.width;
+        }
+      }
+      
       this.vel.x = 0;
-      this.pos.x = water.pos.x - 16;
       
       var splashX = this.pos.x;
       var splashY = this.pos.y + 10;
 
       var drown = new me.Tween(this.pos)
-        .to({ y: water.pos.y + 8 }, 800)
+        .to({ y: obj.pos.y + 8 }, 800)
         .onComplete(function () {
-          var splash = new SplashEntity(splashX, splashY);
-          splash.setCurrentAnimation("default", function () {
+          if (obj.name == "water") {
+            var splash = new SplashEntity(splashX, splashY);
+            splash.setCurrentAnimation("default", function () {
+              self.onAfterDisappearEvent();
+            });
+            me.game.add(splash, 1);
+            me.game.sort();
+          }
+          else {
             self.onAfterDisappearEvent();
-          });
-          me.game.add(splash, 1);
-          me.game.sort();
+          }
         });
+      
       drown.start();
     },
     

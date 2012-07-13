@@ -66,6 +66,11 @@ define(function () {
       src: "images/splash.gif"
     },
     {
+      name: "pit",
+      type: "image",
+      src: "images/pit.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"
