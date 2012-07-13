@@ -4,14 +4,16 @@ define(
     "src/config",
     "src/global",
     "src/PlayScreenBorder",
-    "src/PlayerEntity"
+    "src/PlayerEntity",
+    "src/Score",
   ],
   function (
     me,
     config,
     global,
     PlayScreenBorder,
-    PlayerEntity
+    PlayerEntity,
+    Score
   ) {
       
   var BALL_FLOOR_Y = 192;
@@ -19,11 +21,11 @@ define(
   var PlayScreen = me.ScreenObject.extend({
     
     onResetEvent: function () {
-      me.game.viewport = new me.Viewport(0, 0, 512, 288);
       me.levelDirector.loadLevel(config.startScreen);
 
       me.game.addHUD(0, 0, config.display.width, config.display.height);
       me.game.HUD.addItem("border", new PlayScreenBorder(0, 0));
+      me.game.HUD.addItem("score", new Score(365, 376));
       
       if (config.startPosition) {
         this.spawnPosition = { x: config.startPosition.x, y: config.startPosition.y };

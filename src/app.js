@@ -2,6 +2,7 @@ define(
   [
     "src/me",
     "src/config",
+    "src/util",
     "src/resources",
     "src/PlayScreen",
     "src/FlagEntity",
@@ -17,10 +18,12 @@ define(
     "src/VentExitEntity",
     "src/BottleEntity",
     "src/FireEntity",
+    "src/PointsEntity",
   ],
   function (
     me,
     config,
+    util,
     resources,
     PlayScreen,
     FlagEntity,
@@ -35,7 +38,8 @@ define(
     VentEntity,
     VentExitEntity,
     BottleEntity,
-    FireEntity
+    FireEntity,
+    PointsEntity
   ) {
     
   var app = {
@@ -62,6 +66,7 @@ define(
       me.entityPool.add("vent_exit", VentExitEntity);
       me.entityPool.add("bottle", BottleEntity);
       me.entityPool.add("fire", FireEntity);
+      me.entityPool.add("points", PointsEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");

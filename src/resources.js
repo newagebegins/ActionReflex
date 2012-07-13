@@ -91,6 +91,11 @@ define(function () {
       src: "images/fire.gif"
     },
     {
+      name: "pts100",
+      type: "image",
+      src: "images/pts100.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"

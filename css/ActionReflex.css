@@ -1,5 +1,10 @@
+@font-face {
+  font-family: editundo;
+  src: url('../fonts/editundo.ttf');
+}
 body {
   background-color: gray;
+  font-family: editundo;
 }
 #fps {
   float: right;
