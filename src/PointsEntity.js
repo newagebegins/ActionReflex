@@ -1,7 +1,9 @@
 define(["src/me", "src/global"], function (me, global) {
   var PointsEntity = me.CollectableEntity.extend({
     init: function (x, y, settings) {
-      settings.image = "pts100";
+      this.amount = settings.amount;
+      
+      settings.image = "pts" + settings.amount;
       settings.spritewidth = 32;
 
       this.parent(x, y, settings);
@@ -10,7 +12,7 @@ define(["src/me", "src/global"], function (me, global) {
     },
 
     onCollision: function () {
-      me.game.HUD.updateItemValue("score", 100);
+      me.game.HUD.updateItemValue("score", this.amount);
       this.collidable = false;
       global.collectedPoints[this.GUID] = true;
       me.game.remove(this);
