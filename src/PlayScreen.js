@@ -30,6 +30,7 @@ define(
       me.game.disableHUD();
     },
     createBall: function (oldBall) {
+      var ball;
       if (oldBall) {
         var x;
         if (oldBall.right >= 480) {
@@ -39,7 +40,7 @@ define(
           x = 448;
         }
         this.spawnPosition.x = x;
-        var ball = new PlayerEntity(x, oldBall.pos.y + 16);
+        ball = new PlayerEntity(x, oldBall.pos.y + 16);
         ball.vel = oldBall.vel;
         ball.maxVel = oldBall.maxVel;
         ball.jumping = oldBall.jumping;
@@ -51,7 +52,7 @@ define(
         var tube = me.game.getEntityByName("tube")[0];
         
         if (tube) {
-          var ball = new PlayerEntity(tube.pos.x, tube.pos.y + 10);
+          ball = new PlayerEntity(tube.pos.x, tube.pos.y + 10);
           var BALL_DESTINATION_Y = 192;
           me.game.add(ball, tube.z);
           me.game.sort();
@@ -83,7 +84,7 @@ define(
           }
         }
         else {
-          var ball = new PlayerEntity(this.spawnPosition.x, this.spawnPosition.y);
+          ball = new PlayerEntity(this.spawnPosition.x, this.spawnPosition.y);
           me.game.add(ball, 1);
           me.game.sort();
         }
