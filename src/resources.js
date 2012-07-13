@@ -96,6 +96,11 @@ define(function () {
       src: "images/pts100.gif"
     },
     {
+      name: "speed",
+      type: "image",
+      src: "images/speed.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"

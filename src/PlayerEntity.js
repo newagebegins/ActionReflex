@@ -31,11 +31,13 @@ define(
       
       this.font = new me.Font('century gothic', 8, 'white');
 
-      this.setVelocity(3, INITIAL_Y_VELOCITY);
+      this.setVelocity(4, INITIAL_Y_VELOCITY);
       this.accel.x = 0.1;
       this.accel.y = 0;
       this.friction.x = 0.04;
       this.gravity = 0.5;
+      
+      this.xVelLimit = MAX_Y_VELOCITY * MAX_X_VEL_COEFF - 3;
       
       this.addAnimation("move", [0,1,2,3]);
       this.addAnimation("appear", [4,5,6,7]);
@@ -49,6 +51,7 @@ define(
       }
       
       this.inBottle = false;
+      me.game.HUD.setItemValue("speed", this.vel.x);
     },
     
     update: function () {
@@ -170,6 +173,7 @@ define(
       this.lastVel = this.vel.clone();
 
       if (this.vel.x != 0 || this.vel.y != 0) {
+        me.game.HUD.setItemValue("speed", this.vel.x);
         return true;
       }
 

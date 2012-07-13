@@ -6,6 +6,7 @@ define(
     "src/PlayScreenBorder",
     "src/PlayerEntity",
     "src/Score",
+    "src/Speed",
   ],
   function (
     me,
@@ -13,7 +14,8 @@ define(
     global,
     PlayScreenBorder,
     PlayerEntity,
-    Score
+    Score,
+    Speed
   ) {
       
   var BALL_FLOOR_Y = 192;
@@ -26,6 +28,7 @@ define(
       me.game.addHUD(0, 0, config.display.width, config.display.height);
       me.game.HUD.addItem("border", new PlayScreenBorder(0, 0));
       me.game.HUD.addItem("score", new Score(365, 376));
+      me.game.HUD.addItem("speed", new Speed(16, 352));
       
       if (config.startPosition) {
         this.spawnPosition = {x: config.startPosition.x, y: config.startPosition.y};

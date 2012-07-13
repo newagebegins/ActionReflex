@@ -7,7 +7,6 @@ define(["src/me"], function (me) {
     },
     
     draw: function (context, x, y) {
-      this.parent(context, x, y);
       this.font.color = "#c5c500";
       this.font.draw(context, "SCORE", this.pos.x + x, this.pos.y + y);
       this.font.color = "#00c5c5";
