@@ -86,6 +86,11 @@ define(function () {
       src: "images/bottle.png"
     },
     {
+      name: "fire",
+      type: "image",
+      src: "images/fire.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"
