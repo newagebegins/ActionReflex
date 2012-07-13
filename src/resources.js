@@ -64,7 +64,12 @@ define(function () {
       name: "scr002",
       type: "tmx",
       src: "maps/scr002.tmx"
-    }
+    },
+    {
+      name: "scr003",
+      type: "tmx",
+      src: "maps/scr003.tmx"
+    },
   ];
   return resources;
 });
