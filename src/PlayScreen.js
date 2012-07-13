@@ -54,6 +54,20 @@ define(
         me.game.add(ball, 1);
         me.game.sort();
       }
+      else if (global.ballState == "suck") {
+        var ventExit = me.game.getEntityByName("vent_exit")[0];
+        this.spawnPosition.x = ventExit.pos.x;
+        this.spawnPosition.y = 192;
+        ball = new PlayerEntity(ventExit.pos.x, 0);
+        me.game.add(ball, 1);
+        me.game.sort();
+        new me.Tween(ball.pos)
+          .to({y: 64}, 1000)
+          .onComplete(function () {
+            global.ballState = "normal";
+          })
+          .start();
+      }
       else {
         var tube = me.game.getEntityByName("tube")[0];
         

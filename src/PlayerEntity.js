@@ -153,6 +153,9 @@ define(
         else if ((res.obj.name == "water" || res.obj.name == "pit") && global.ballState != "drown") {
           this.drown(res.obj);
         }
+        else if (res.obj.name == "vent_pad" && global.ballState != "suck") {
+          this.suck(res.obj);
+        }
       }
 
       if (this.vel.x != 0) {
@@ -228,6 +231,22 @@ define(
         });
       
       drown.start();
+    },
+    
+    suck: function (pad) {
+      var self = this;
+      global.ballState = "suck";
+      new me.Tween(this.pos)
+        .to({x: pad.pos.x + 16, y: pad.pos.y - 116}, 600)
+        .onComplete(function () {
+          me.game.remove(self);
+          var vent = me.game.getEntityByName("vent")[0];
+          vent.setCurrentAnimation("suck", function () {
+            me.levelDirector.loadLevel(vent.to);
+            me.state.current().createBall();
+          });
+        })
+        .start();
     },
     
     draw: function (context) {

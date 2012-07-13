@@ -45,5 +45,10 @@
   <object name="water" x="112" y="224" width="16" height="16"/>
   <object name="water" x="128" y="224" width="16" height="16"/>
   <object name="pit" x="352" y="224" width="48" height="16"/>
+  <object name="portal" x="480" y="64" width="32" height="160">
+   <properties>
+    <property name="to" value="scr004"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

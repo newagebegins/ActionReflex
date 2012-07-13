@@ -71,6 +71,16 @@ define(function () {
       src: "images/pit.gif"
     },
     {
+      name: "vent_pad",
+      type: "image",
+      src: "images/vent_pad.gif"
+    },
+    {
+      name: "vent",
+      type: "image",
+      src: "images/vent.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"
@@ -84,6 +94,11 @@ define(function () {
       name: "scr003",
       type: "tmx",
       src: "maps/scr003.tmx"
+    },
+    {
+      name: "scr004",
+      type: "tmx",
+      src: "maps/scr004.tmx"
     },
   ];
   return resources;
