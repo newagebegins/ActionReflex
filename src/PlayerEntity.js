@@ -47,8 +47,6 @@ define(
       } else {
         this.setCurrentAnimation("move");
       }
-      
-      global.ball = this;
     },
     
     update: function () {
