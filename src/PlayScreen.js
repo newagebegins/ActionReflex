@@ -22,6 +22,8 @@ define(
       me.game.addHUD(0, 0, config.display.width, config.display.height);
       me.game.HUD.addItem("border", new PlayScreenBorder(0, 0));
       
+      this.spawnPosition = { x: 32, y: 192 + 16 };
+      
       this.createBall();
     },
     onDestroyEvent: function () {
@@ -36,7 +38,7 @@ define(
         else {
           x = 448;
         }
-        this.spawnPosition = { x: x, y: 192 };
+        this.spawnPosition.x = x;
         var ball = new PlayerEntity(x, oldBall.pos.y + 16);
         ball.vel = oldBall.vel;
         ball.maxVel = oldBall.maxVel;
@@ -81,7 +83,7 @@ define(
           }
         }
         else {
-          var ball = new PlayerEntity(32, 192 + 16);
+          var ball = new PlayerEntity(this.spawnPosition.x, this.spawnPosition.y);
           me.game.add(ball, 1);
           me.game.sort();
         }
