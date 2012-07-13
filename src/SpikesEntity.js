@@ -1,7 +1,6 @@
 define(["src/me"], function (me) {
   var SpikesEntity = me.ObjectEntity.extend({
-    init: function (x, y) {
-      var settings = {};
+    init: function (x, y, settings) {
       settings.image = "spikes";
       settings.spritewidth = 32;
 

@@ -1,11 +1,26 @@
-define(["src/me", "src/config", "src/global", "src/util"], function (me, config, global, util) {
+define(
+  [
+    "src/me",
+    "src/config",
+    "src/global",
+    "src/util",
+    "src/SplashEntity"
+  ],
+  function (
+    me,
+    config,
+    global,
+    util,
+    SplashEntity
+  ) {
+      
   var MAX_Y_VELOCITY = 11;
   var INITIAL_Y_VELOCITY = 4;
-  var VELOCITY_INC = 1.3;
   var APPEAR_DISAPPEAR_DURATION = 1200;
   var MAX_X_VEL_COEFF = 0.625;
 
   var PlayerEntity = me.ObjectEntity.extend({
+    
     init: function (x, y) {
       var settings = {};
       settings.image = "ball";
@@ -35,8 +50,9 @@ define(["src/me", "src/config", "src/global", "src/util"], function (me, config,
       
       global.ball = this;
     },
+    
     update: function () {
-      if (global.ballState == "appearThroughTube") {
+      if (global.ballState == "appearThroughTube" || global.ballState == "drown") {
         return false;
       }
       
@@ -134,6 +150,9 @@ define(["src/me", "src/config", "src/global", "src/util"], function (me, config,
           this.maxVel.y = 15;
           this.forceJump();
         }
+        else if (res.obj.name == "water" && global.ballState != "drown") {
+          this.drown(res.obj);
+        }
       }
 
       if (this.vel.x != 0) {
@@ -149,23 +168,51 @@ define(["src/me", "src/config", "src/global", "src/util"], function (me, config,
 
       return false;
     },
+    
     isBouncing: function () {
       return this.maxVel.y > INITIAL_Y_VELOCITY;
     },
+    
     onAfterDisappearEvent: function () {
       me.levelDirector.reloadLevel();
       global.ballState = "appearAfterDeath";
       me.state.current().createBall();
     },
+    
     onAfterAppearAfterDeathEvent: function () {
       global.ballState = "normal";
       this.setCurrentAnimation("move");
     },
+    
     disappear: function () {
       this.setCurrentAnimation("disappear");
       global.ballState = "disappear";
       util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
     },
+    
+    drown: function (water) {
+      var self = this;
+      global.ballState = "drown";
+      
+      this.vel.x = 0;
+      this.pos.x = water.pos.x - 16;
+      
+      var splashX = this.pos.x;
+      var splashY = this.pos.y + 10;
+
+      var drown = new me.Tween(this.pos)
+        .to({ y: water.pos.y + 8 }, 800)
+        .onComplete(function () {
+          var splash = new SplashEntity(splashX, splashY);
+          splash.setCurrentAnimation("default", function () {
+            self.onAfterDisappearEvent();
+          });
+          me.game.add(splash, 1);
+          me.game.sort();
+        });
+      drown.start();
+    },
+    
     draw: function (context) {
       this.parent(context);
       if (config.debug) {
@@ -174,6 +221,7 @@ define(["src/me", "src/config", "src/global", "src/util"], function (me, config,
         this.font.draw(context, "maxVel.y:" + this.maxVel.y.round(2), this.pos.x - 3, this.pos.y - 5);
       }
     },
+    
   });
 
   return PlayerEntity;

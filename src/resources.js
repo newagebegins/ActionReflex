@@ -56,6 +56,16 @@ define(function () {
       src: "images/spikes.gif"
     },
     {
+      name: "water",
+      type: "image",
+      src: "images/water.gif"
+    },
+    {
+      name: "splash",
+      type: "image",
+      src: "images/splash.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"
