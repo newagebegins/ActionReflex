@@ -4,14 +4,16 @@ define(
     "src/config",
     "src/global",
     "src/util",
-    "src/SplashEntity"
+    "src/SplashEntity",
+    "src/ArrowEntity",
   ],
   function (
     me,
     config,
     global,
     util,
-    SplashEntity
+    SplashEntity,
+    ArrowEntity
   ) {
       
   var MAX_Y_VELOCITY = 11;
@@ -55,7 +57,10 @@ define(
     },
     
     update: function () {
-      if (global.ballState == "appearThroughTube" || global.ballState == "drown") {
+      if (global.ballState == "appearThroughTube" ||
+          global.ballState == "drown" ||
+          global.ballState == "attract"
+      ) {
         return false;
       }
       
@@ -160,6 +165,9 @@ define(
         else if (res.obj.name == "vent_pad" && global.ballState != "suck") {
           this.suck(res.obj);
         }
+        else if (res.obj.name == "magnet_pad" && global.ballState != "attract") {
+          this.attract();
+        }
         else if (res.obj.name == "bottle") {
           this.inBottle = true;
         }
@@ -223,7 +231,7 @@ define(
       var splashY = this.pos.y + 10;
 
       var drown = new me.Tween(this.pos)
-        .to({ y: obj.pos.y + 8 }, 800)
+        .to({y: obj.pos.y + 8}, 800)
         .onComplete(function () {
           if (obj.name == "water") {
             var splash = new SplashEntity(splashX, splashY);
@@ -255,6 +263,23 @@ define(
           });
         })
         .start();
+    },
+    
+    attract: function () {
+      var self = this;
+      global.ballState = "attract";
+      this.vel.x = 0;
+      var magnet = me.game.getEntityByName("magnet")[0];
+      var arrow = new ArrowEntity(560, magnet.bottom + 16);
+      me.game.add(arrow, 1);
+      me.game.sort();
+      var attract = new me.Tween(this.pos).to({x: magnet.left + 8, y: magnet.bottom}, 250);
+      var pierce = new me.Tween(arrow.pos).to({x: magnet.left + 28}, 500);
+      pierce.onComplete(function () {
+        self.disappear();
+      });
+      attract.chain(pierce);
+      attract.start();
     },
     
     draw: function (context) {

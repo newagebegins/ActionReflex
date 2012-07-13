@@ -101,6 +101,21 @@ define(function () {
       src: "images/speed.gif"
     },
     {
+      name: "magnet_pad",
+      type: "image",
+      src: "images/magnet_pad.gif"
+    },
+    {
+      name: "magnet",
+      type: "image",
+      src: "images/magnet.gif"
+    },
+    {
+      name: "arrow",
+      type: "image",
+      src: "images/arrow.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"
@@ -124,6 +139,11 @@ define(function () {
       name: "scr005",
       type: "tmx",
       src: "maps/scr005.tmx"
+    },
+    {
+      name: "scr006",
+      type: "tmx",
+      src: "maps/scr006.tmx"
     },
   ];
   return resources;

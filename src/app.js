@@ -19,6 +19,9 @@ define(
     "src/BottleEntity",
     "src/FireEntity",
     "src/PointsEntity",
+    "src/MagnetPadEntity",
+    "src/MagnetEntity",
+    "src/ArrowEntity",
   ],
   function (
     me,
@@ -39,7 +42,10 @@ define(
     VentExitEntity,
     BottleEntity,
     FireEntity,
-    PointsEntity
+    PointsEntity,
+    MagnetPadEntity,
+    MagnetEntity,
+    ArrowEntity
   ) {
     
   var app = {
@@ -67,6 +73,9 @@ define(
       me.entityPool.add("bottle", BottleEntity);
       me.entityPool.add("fire", FireEntity);
       me.entityPool.add("points", PointsEntity);
+      me.entityPool.add("magnet_pad", MagnetPadEntity);
+      me.entityPool.add("magnet", MagnetEntity);
+      me.entityPool.add("arrow", ArrowEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");
