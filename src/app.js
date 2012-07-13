@@ -15,6 +15,7 @@ define(
     "src/VentPadEntity",
     "src/VentEntity",
     "src/VentExitEntity",
+    "src/BottleEntity",
   ],
   function (
     me,
@@ -31,7 +32,8 @@ define(
     PitEntity,
     VentPadEntity,
     VentEntity,
-    VentExitEntity
+    VentExitEntity,
+    BottleEntity
   ) {
     
   var app = {
@@ -56,6 +58,7 @@ define(
       me.entityPool.add("vent_pad", VentPadEntity);
       me.entityPool.add("vent", VentEntity);
       me.entityPool.add("vent_exit", VentExitEntity);
+      me.entityPool.add("bottle", BottleEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");

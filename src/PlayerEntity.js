@@ -47,6 +47,8 @@ define(
       } else {
         this.setCurrentAnimation("move");
       }
+      
+      this.inBottle = false;
     },
     
     update: function () {
@@ -88,7 +90,7 @@ define(
       }
       
       if (collision.y && falling) {
-        if (me.input.isKeyPressed('jump')) {
+        if (me.input.isKeyPressed('jump') && !this.inBottle) {
           this.maxVel.y += 3;
           if (this.maxVel.y > MAX_Y_VELOCITY) {
             this.maxVel.y = MAX_Y_VELOCITY;
@@ -104,7 +106,7 @@ define(
       
       if (collision.y) {
         if (me.input.isKeyPressed('left')) {
-          if (this.isBouncing()) {
+          if (this.isBouncing() && !this.inBottle) {
             this.vel.x = -this.maxVel.y;
             this.maxVel.x = this.maxVel.y * MAX_X_VEL_COEFF;
           }
@@ -113,7 +115,7 @@ define(
           }
         }
         else if (me.input.isKeyPressed('right')) {
-          if (this.isBouncing()) {
+          if (this.isBouncing() && !this.inBottle) {
             this.vel.x = this.maxVel.y;
             this.maxVel.x = this.maxVel.y * MAX_X_VEL_COEFF;
           }
@@ -134,6 +136,7 @@ define(
       this.animationspeed = this.vel.x == 0 ? 0 : 1 / Math.abs(this.vel.x);
 
       var res = me.game.collide(this);
+      this.inBottle = false;
       
       if (res) {
         if (res.obj.name == "portal") {
@@ -153,6 +156,9 @@ define(
         }
         else if (res.obj.name == "vent_pad" && global.ballState != "suck") {
           this.suck(res.obj);
+        }
+        else if (res.obj.name == "bottle") {
+          this.inBottle = true;
         }
       }
 

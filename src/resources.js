@@ -81,6 +81,11 @@ define(function () {
       src: "images/vent.gif"
     },
     {
+      name: "bottle",
+      type: "image",
+      src: "images/bottle.png"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"
@@ -99,6 +104,11 @@ define(function () {
       name: "scr004",
       type: "tmx",
       src: "maps/scr004.tmx"
+    },
+    {
+      name: "scr005",
+      type: "tmx",
+      src: "maps/scr005.tmx"
     },
   ];
   return resources;
