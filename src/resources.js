@@ -210,6 +210,16 @@ define(function () {
       type: "tmx",
       src: "maps/scr016.tmx"
     },
+    {
+      name: "scr017",
+      type: "tmx",
+      src: "maps/scr017.tmx"
+    },
+    {
+      name: "scr018",
+      type: "tmx",
+      src: "maps/scr018.tmx"
+    },
   ];
   return resources;
 });
