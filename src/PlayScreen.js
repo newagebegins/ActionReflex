@@ -35,6 +35,8 @@ define(
       me.game.HUD.addItem("buoy", new BuoyHUD(336, 288));
       me.game.HUD.setItemValue("buoy", config.bouyInitialCount);
       
+      me.gamestat.add("ptsNextBuoy", config.bouyCost);
+      
       if (config.startPosition) {
         this.spawnPosition = {x: config.startPosition.x, y: config.startPosition.y};
       }

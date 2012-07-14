@@ -5,10 +5,12 @@ define({
     height: 384,
   },
   ballAppearThroughTubeAnimation: true,
-  startScreen: "scr024",
+  startScreen: "scr022",
   
 //  startPosition: {x:381, y:192},
   startPosition: null,
   
-  bouyInitialCount: 1,
+  
+  bouyInitialCount: 0,
+  bouyCost: 500,
 });
