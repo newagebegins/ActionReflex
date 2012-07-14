@@ -6,6 +6,11 @@ define(function () {
       src: "images/tiles.gif"
     },
     {
+      name: "tiles2",
+      type: "image",
+      src: "images/tiles2.gif"
+    },
+    {
       name: "metatiles",
       type: "image",
       src: "images/metatiles.png"
@@ -164,6 +169,11 @@ define(function () {
       name: "scr009",
       type: "tmx",
       src: "maps/scr009.tmx"
+    },
+    {
+      name: "scr010",
+      type: "tmx",
+      src: "maps/scr010.tmx"
     },
   ];
   return resources;
