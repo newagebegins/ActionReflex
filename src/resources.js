@@ -160,6 +160,11 @@ define(function () {
       type: "tmx",
       src: "maps/scr008.tmx"
     },
+    {
+      name: "scr009",
+      type: "tmx",
+      src: "maps/scr009.tmx"
+    },
   ];
   return resources;
 });

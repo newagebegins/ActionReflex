@@ -92,14 +92,25 @@ define(
     
     /** @private */
     portal: function (oldBall) {
+      var x, y;
+      
       if (oldBall.right >= 480) {
-        this.spawnPosition.x = 32;
+        x = this.spawnPosition.x = 32;
+        y = oldBall.pos.y;
       }
-      else {
-        this.spawnPosition.x = 448;
+      else if (oldBall.left <= 32) {
+        x = this.spawnPosition.x = 448;
+        y = oldBall.pos.y;
       }
+      else if (oldBall.bottom >= 256) {
+        x = oldBall.pos.x;
+        y = 32;
+      }
+      
       this.spawnPosition.y = BALL_FLOOR_Y;
-      this.instantiateBall(this.spawnPosition.x, oldBall.pos.y);
+      
+      this.instantiateBall(x, y);
+      
       global.ball.vel = oldBall.vel;
       global.ball.maxVel = oldBall.maxVel;
       global.ball.jumping = oldBall.jumping;
