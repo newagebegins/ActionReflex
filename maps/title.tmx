@@ -36,6 +36,6 @@
  </layer>
  <objectgroup color="#0ca104" name="Entities" width="32" height="24">
   <object name="bouncing_ball" x="48" y="128" width="32" height="32"/>
-  <object name="title_screen_text" x="128" y="240" width="288" height="32"/>
+  <object name="title_screen_text" x="0" y="240" width="512" height="144"/>
  </objectgroup>
 </map>
