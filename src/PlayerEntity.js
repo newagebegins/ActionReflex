@@ -54,11 +54,15 @@ define(
       
       me.game.HUD.setItemValue("speed", this.vel.x);
       this.launchTarget = null;
+      
+      this.bouyImage = me.loader.getImage("buoy");
+      this.hasBuoy = false;
     },
     
     update: function () {
       if (global.ballState == "appearThroughTube" ||
           global.ballState == "drown" ||
+          global.ballState == "fallIntoPit" ||
           global.ballState == "attract"
       ) {
         return false;
@@ -156,6 +160,8 @@ define(
       }
 
       this.animationspeed = this.vel.x == 0 ? 0 : 1 / Math.abs(this.vel.x);
+      
+      this.touchedWater = false;
 
       var res = me.game.collide(this);
       
@@ -172,8 +178,21 @@ define(
           this.maxVel.y = 15;
           this.forceJump();
         }
-        else if ((res.obj.name == "water" || res.obj.name == "pit") && global.ballState != "drown") {
-          this.drown(res.obj);
+        else if (res.obj.name == "pit_trigger" && global.ballState != "fallIntoPit") {
+          this.fallIntoPit(res.obj);
+        }
+        else if (res.obj.name == "water_trigger") {
+          this.touchedWater = true;
+          if (this.hasBuoy) {
+            // do nothing
+          }
+          else if (me.game.HUD.getItemValue("buoy") > 0) {
+            me.game.HUD.updateItemValue("buoy", -1);
+            this.hasBuoy = true;
+          }
+          else if (global.ballState != "drown") {
+            this.drown(res.obj);
+          }
         }
         else if (res.obj.name == "vent_pad" && global.ballState != "suck") {
           this.suck(res.obj);
@@ -184,6 +203,10 @@ define(
         else if (res.obj.name == "launcher" && global.ballState != "launchJump") {
           this.launch(res.obj);
         }
+      }
+      
+      if (this.hasBuoy && !this.touchedWater) {
+        this.hasBuoy = false;
       }
 
       if (this.vel.x != 0) {
@@ -225,20 +248,15 @@ define(
       util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
     },
     
-    drown: function (obj) {
+    drown: function (trigger) {
       var self = this;
       global.ballState = "drown";
       
-      if (obj.name == "water") {
-        this.pos.x = obj.pos.x - 16;
+      if (this.pos.x < trigger.pos.x) {
+        this.pos.x = trigger.pos.x;
       }
-      else {
-        if (this.vel.x > 0) {
-          this.pos.x = obj.pos.x;
-        }
-        else {
-          this.pos.x = obj.right - this.width;
-        }
+      else if (this.pos.x + this.width > trigger.pos.x + trigger.width) {
+        this.pos.x = trigger.pos.x + trigger.width - this.width;
       }
       
       this.vel.x = 0;
@@ -247,22 +265,40 @@ define(
       var splashY = this.pos.y + 10;
 
       var drown = new me.Tween(this.pos)
-        .to({y: obj.pos.y + 8}, 800)
+        .to({y: trigger.pos.y + 18}, 800)
         .onComplete(function () {
-          if (obj.name == "water") {
-            var splash = new SplashEntity(splashX, splashY);
-            splash.setCurrentAnimation("default", function () {
-              self.onAfterDisappearEvent();
-            });
-            me.game.add(splash, 1);
-            me.game.sort();
-          }
-          else {
+          me.game.remove(self);
+          var splash = new SplashEntity(splashX, splashY);
+          splash.setCurrentAnimation("default", function () {
             self.onAfterDisappearEvent();
-          }
+          });
+          me.game.add(splash, 1);
+          me.game.sort();
         });
       
       drown.start();
+    },
+    
+    fallIntoPit: function (trigger) {
+      var self = this;
+      global.ballState = "fallIntoPit";
+      
+      if (this.pos.x < trigger.pos.x) {
+        this.pos.x = trigger.pos.x;
+      }
+      else if (this.pos.x + this.width > trigger.pos.x + trigger.width) {
+        this.pos.x = trigger.pos.x + trigger.width - this.width;
+      }
+      
+      this.vel.x = 0;
+
+      var fall = new me.Tween(this.pos)
+        .to({y: trigger.pos.y + 18}, 800)
+        .onComplete(function () {
+          self.onAfterDisappearEvent();
+        });
+      
+      fall.start();
     },
     
     suck: function (pad) {
@@ -348,6 +384,9 @@ define(
     
     draw: function (context) {
       this.parent(context);
+      if (this.hasBuoy) {
+        context.drawImage(this.bouyImage, this.pos.x - 5, this.pos.y + 20);
+      }
       if (config.debug) {
         var text = "x:" + this.pos.x.round(0) + "; y:" + this.pos.y.round(0);
         this.font.draw(context, text, this.pos.x - 3, this.pos.y - 15);

@@ -5,6 +5,10 @@ define({
     height: 384,
   },
   ballAppearThroughTubeAnimation: true,
-  startScreen: "scr001",
+  startScreen: "scr024",
+  
+//  startPosition: {x:381, y:192},
   startPosition: null,
+  
+  bouyInitialCount: 1,
 });

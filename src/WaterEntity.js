@@ -5,8 +5,6 @@ define(["src/me"], function (me) {
       settings.spritewidth = 16;
 
       this.parent(x, y, settings);
-      
-      this.collidable = true;
     },
   });
 

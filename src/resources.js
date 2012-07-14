@@ -131,6 +131,16 @@ define(function () {
       src: "images/arrow.gif"
     },
     {
+      name: "buoy_hud",
+      type: "image",
+      src: "images/buoy_hud.gif"
+    },
+    {
+      name: "buoy",
+      type: "image",
+      src: "images/buoy.gif"
+    },
+    {
       name: "scr001",
       type: "tmx",
       src: "maps/scr001.tmx"

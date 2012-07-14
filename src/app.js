@@ -12,7 +12,7 @@ define(
     "src/GloveBoxEntity",
     "src/SpikesEntity",
     "src/WaterEntity",
-    "src/PitEntity",
+    "src/PitTriggerEntity",
     "src/VentPadEntity",
     "src/VentEntity",
     "src/VentExitEntity",
@@ -24,6 +24,7 @@ define(
     "src/ArrowEntity",
     "src/LauncherEntity",
     "src/LaunchTargetEntity",
+    "src/WaterTriggerEntity"
   ],
   function (
     me,
@@ -38,7 +39,7 @@ define(
     GloveBoxEntity,
     SpikesEntity,
     WaterEntity,
-    PitEntity,
+    PitTriggerEntity,
     VentPadEntity,
     VentEntity,
     VentExitEntity,
@@ -49,7 +50,8 @@ define(
     MagnetEntity,
     ArrowEntity,
     LauncherEntity,
-    LaunchTargetEntity
+    LaunchTargetEntity,
+    WaterTriggerEntity
   ) {
     
   var app = {
@@ -70,7 +72,7 @@ define(
       me.entityPool.add("glove_box", GloveBoxEntity);
       me.entityPool.add("spikes", SpikesEntity);
       me.entityPool.add("water", WaterEntity);
-      me.entityPool.add("pit", PitEntity);
+      me.entityPool.add("pit_trigger", PitTriggerEntity);
       me.entityPool.add("vent_pad", VentPadEntity);
       me.entityPool.add("vent", VentEntity);
       me.entityPool.add("vent_exit", VentExitEntity);
@@ -82,6 +84,7 @@ define(
       me.entityPool.add("arrow", ArrowEntity);
       me.entityPool.add("launcher", LauncherEntity);
       me.entityPool.add("launch_target", LaunchTargetEntity);
+      me.entityPool.add("water_trigger", WaterTriggerEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");
