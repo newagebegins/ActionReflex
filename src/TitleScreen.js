@@ -1,4 +1,4 @@
-define(["src/me"], function (me) {
+define(["src/me", "src/Animation"], function (me, Animation) {
   
   var TitleScreen = me.ScreenObject.extend({
     
@@ -17,7 +17,6 @@ define(["src/me"], function (me) {
         '#c500c5',
         '#00b500',
       ];
-      this.enterColorDuration = 5;
     },
 
     onResetEvent: function () {
@@ -27,25 +26,14 @@ define(["src/me"], function (me) {
       }
       
       me.input.bindKey(me.input.KEY.ENTER, "enter", true);
-      
-      this.enterColor = 0;
-      this.enterColorTimer = 0;
+      this.enterAnimation = new Animation(this.enterColors, 5, true);
     },
 
     update: function () {
       if (me.input.isKeyPressed('enter')) {
         me.state.change(me.state.PLAY);
       }
-      
-      this.enterColorTimer++;
-      if (this.enterColorTimer >= this.enterColorDuration) {
-        this.enterColorTimer = 0;
-        this.enterColor++;
-        if (this.enterColor >= this.enterColors.length) {
-          this.enterColor = 0;
-        }
-      }
-      
+      this.enterAnimation.update();
       return true;
     },
 
@@ -54,16 +42,12 @@ define(["src/me"], function (me) {
       context.drawImage(this.titleImage, 0,0);
       this.font.color = "#00c5c5";
       this.font.draw(context, "PRESS       TO START", 100, 100);
-      this.font.color = this.getEnterColor();
+      this.font.color = this.enterAnimation.getFrame();
       this.font.draw(context, "ENTER", 173, 100);
     },
 
     onDestroyEvent: function () {
       me.input.unbindKey(me.input.KEY.ENTER);
-    },
-    
-    getEnterColor: function () {
-      return this.enterColors[this.enterColor];
     },
 
   });
