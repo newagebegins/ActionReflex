@@ -155,6 +155,11 @@ define(function () {
       type: "tmx",
       src: "maps/scr007.tmx"
     },
+    {
+      name: "scr008",
+      type: "tmx",
+      src: "maps/scr008.tmx"
+    },
   ];
   return resources;
 });
