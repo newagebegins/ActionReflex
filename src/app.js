@@ -24,7 +24,8 @@ define(
     "src/ArrowEntity",
     "src/LauncherEntity",
     "src/LaunchTargetEntity",
-    "src/WaterTriggerEntity"
+    "src/WaterTriggerEntity",
+    "src/TitleScreen",
   ],
   function (
     me,
@@ -51,7 +52,8 @@ define(
     ArrowEntity,
     LauncherEntity,
     LaunchTargetEntity,
-    WaterTriggerEntity
+    WaterTriggerEntity,
+    TitleScreen
   ) {
     
   var app = {
@@ -63,6 +65,7 @@ define(
       me.state.change(me.state.LOADING);
     },
     loaded: function () {
+      me.state.set(me.state.MENU, new TitleScreen());
       me.state.set(me.state.PLAY, new PlayScreen());
 
       me.entityPool.add("flag", FlagEntity);
@@ -92,7 +95,7 @@ define(
       
       me.debug.renderHitBox = config.debug;
 
-      me.state.change(me.state.PLAY);
+      me.state.change(me.state.MENU);
     },
   };
 

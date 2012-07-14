@@ -21,6 +21,11 @@ define(function () {
       src: "images/border.gif"
     },
     {
+      name: "title",
+      type: "image",
+      src: "images/title.gif"
+    },
+    {
       name: "ball",
       type: "image",
       src: "images/ball.gif"
