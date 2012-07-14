@@ -131,6 +131,7 @@ define(
         .to({y: 64}, 1000)
         .onComplete(function () {
           global.ballState = "normal";
+          global.listenBallKeys = true;
         })
         .start();
     },

@@ -52,5 +52,6 @@
     <property name="to" value="scr007"/>
    </properties>
   </object>
+  <object name="vent_exit" x="48" y="32" width="32" height="48"/>
  </objectgroup>
 </map>

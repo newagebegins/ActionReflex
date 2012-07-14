@@ -49,5 +49,10 @@
    </properties>
   </object>
   <object name="launcher" x="112" y="160" width="32" height="16"/>
+  <object name="portal" x="0" y="64" width="32" height="160">
+   <properties>
+    <property name="to" value="scr011"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

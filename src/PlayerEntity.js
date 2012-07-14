@@ -265,6 +265,7 @@ define(
     
     suck: function (pad) {
       var self = this;
+      global.listenBallKeys = false;
       global.ballState = "suck";
       new me.Tween(this.pos)
         .to({x: pad.pos.x + 16, y: pad.pos.y - 116}, 600)
