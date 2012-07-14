@@ -26,9 +26,14 @@ define(function () {
       src: "images/ball.gif"
     },
     {
-      name: "flag",
+      name: "flag_green",
       type: "image",
-      src: "images/flag.gif"
+      src: "images/flag_green.gif"
+    },
+    {
+      name: "flag_red",
+      type: "image",
+      src: "images/flag_red.gif"
     },
     {
       name: "cannon",
