@@ -146,6 +146,11 @@ define(function () {
       src: "images/buoy.gif"
     },
     {
+      name: "timeline",
+      type: "image",
+      src: "images/timeline.gif"
+    },
+    {
       name: "title",
       type: "tmx",
       src: "maps/title.tmx"

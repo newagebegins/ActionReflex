@@ -8,6 +8,7 @@ define(
     "src/Score",
     "src/Speed",
     "src/BuoyHUD",
+    "src/TimelineHUD",
   ],
   function (
     me,
@@ -17,7 +18,8 @@ define(
     PlayerEntity,
     Score,
     Speed,
-    BuoyHUD
+    BuoyHUD,
+    TimelineHUD
   ) {
       
   var BALL_FLOOR_Y = 192;
@@ -30,10 +32,12 @@ define(
       me.game.addHUD(0, 0, config.display.width, config.display.height);
       me.game.HUD.addItem("border", new PlayScreenBorder(0, 0));
       me.game.HUD.addItem("score", new Score(365, 384));
-      me.game.HUD.addItem("speed", new Speed(16, 352));
+      me.game.HUD.addItem("speed", new Speed(16, 351));
       
       me.game.HUD.addItem("buoy", new BuoyHUD(336, 288));
       me.game.HUD.setItemValue("buoy", config.bouyInitialCount);
+      
+      me.game.HUD.addItem("timeline", new TimelineHUD(16, 304));
       
       me.gamestat.add("ptsNextBuoy", config.bouyCost);
       
