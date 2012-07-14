@@ -106,6 +106,11 @@ define(function () {
       src: "images/pts200.gif"
     },
     {
+      name: "pts500",
+      type: "image",
+      src: "images/pts500.gif"
+    },
+    {
       name: "speed",
       type: "image",
       src: "images/speed.gif"

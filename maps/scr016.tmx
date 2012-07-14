@@ -44,5 +44,10 @@
    </properties>
   </object>
   <object name="fire" x="368" y="176" width="32" height="48"/>
+  <object name="points" x="192" y="128" width="32" height="16">
+   <properties>
+    <property name="amount" value="500"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
