@@ -101,7 +101,12 @@ define(
       
       me.debug.renderHitBox = config.debug;
 
-      me.state.change(me.state.MENU);
+      if (config.showTitleScreen) {
+        me.state.change(me.state.MENU);
+      }
+      else {
+        me.state.change(me.state.PLAY);
+      }
     },
   };
 

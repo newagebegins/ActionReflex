@@ -4,13 +4,14 @@ define({
     width: 512,
     height: 384,
   },
+  showTitleScreen: false,
   ballAppearThroughTubeAnimation: true,
-  startScreen: "scr022",
+  startScreen: "scr024",
   
 //  startPosition: {x:381, y:192},
   startPosition: null,
   
   
-  bouyInitialCount: 0,
+  bouyInitialCount: 1,
   bouyCost: 500,
 });

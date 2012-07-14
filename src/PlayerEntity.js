@@ -84,7 +84,7 @@ define(
         this.launchJump();
       }
       
-      if (global.listenBallKeys && me.input.isKeyPressed('jump')) {
+      if (global.listenBallKeys && !this.hasBuoy && me.input.isKeyPressed('jump')) {
         this.doJump();
       }
 
