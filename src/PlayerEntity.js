@@ -54,6 +54,7 @@ define(
       
       this.inBottle = false;
       me.game.HUD.setItemValue("speed", this.vel.x);
+      this.launchTarget = null;
     },
     
     update: function () {
@@ -70,7 +71,17 @@ define(
         return true;
       }
       
-      if (me.input.isKeyPressed('jump')) {
+      if (global.ballState == "launchLand") {
+        this.animationspeed = 0.5;
+        this.parent();
+        return true;
+      }
+      
+      if (global.ballState == "launchJump") {
+        this.launchJump();
+      }
+      
+      if (global.listenBallKeys && me.input.isKeyPressed('jump')) {
         this.doJump();
       }
 
@@ -98,7 +109,7 @@ define(
       }
       
       if (collision.y && falling) {
-        if (me.input.isKeyPressed('jump') && !this.inBottle) {
+        if (global.listenBallKeys && me.input.isKeyPressed('jump') && !this.inBottle) {
           this.maxVel.y += 3;
           if (this.maxVel.y > MAX_Y_VELOCITY) {
             this.maxVel.y = MAX_Y_VELOCITY;
@@ -113,7 +124,7 @@ define(
       }
       
       if (collision.y) {
-        if (me.input.isKeyPressed('left')) {
+        if (global.listenBallKeys && me.input.isKeyPressed('left')) {
           if (this.isBouncing() && !this.inBottle) {
             this.vel.x = -this.maxVel.y;
             this.maxVel.x = this.maxVel.y * MAX_X_VEL_COEFF;
@@ -122,7 +133,7 @@ define(
             this.doWalk(true);
           }
         }
-        else if (me.input.isKeyPressed('right')) {
+        else if (global.listenBallKeys && me.input.isKeyPressed('right')) {
           if (this.isBouncing() && !this.inBottle) {
             this.vel.x = this.maxVel.y;
             this.maxVel.x = this.maxVel.y * MAX_X_VEL_COEFF;
@@ -170,6 +181,9 @@ define(
         }
         else if (res.obj.name == "bottle") {
           this.inBottle = true;
+        }
+        else if (res.obj.name == "launcher" && global.ballState != "launchJump") {
+          this.launch(res.obj);
         }
       }
 
@@ -280,6 +294,48 @@ define(
       });
       attract.chain(pierce);
       attract.start();
+    },
+    
+    launch: function (launcher) {
+      global.listenBallKeys = false;
+      global.ballState = "launchJump";
+      
+      this.vel.x = 0;
+      var align = new me.Tween(this.pos).to({x: launcher.pos.x}, 200);
+      var moveDown = new me.Tween(this.pos).to({y: launcher.pos.y + 18}, 500);
+      var moveUp = new me.Tween(this.pos).to({y: launcher.pos.y - 32}, 200);
+      
+      align.chain(moveDown);
+      moveDown.chain(moveUp);
+      align.start();
+    },
+    
+    launchJump: function () {
+      this.vel.y = -5;
+        
+      if (!this.launchTarget) {
+        this.launchTarget = me.game.getEntityByName("launch_target")[0];
+        return;
+      }
+      
+      if (this.top <= this.launchTarget.top) {
+        global.ballState = "launchLand";
+        
+        var one = new me.Tween(this.pos).to({x: this.launchTarget.left + 32, y: this.launchTarget.top - 32}, 200);
+        var two = new me.Tween(this.pos).to({x: this.launchTarget.left, y: this.launchTarget.top}, 200);
+        two.onComplete(this.onAfterLaunchLandEvent.bind(this));
+
+        one.chain(two);
+        one.start();
+      }
+    },
+    
+    onAfterLaunchLandEvent: function () {
+      global.ballState = "normal";
+      global.listenBallKeys = true;
+      this.vel.x = 0;
+      this.vel.y = 0;
+      this.maxVel.y = INITIAL_Y_VELOCITY;
     },
     
     draw: function (context) {

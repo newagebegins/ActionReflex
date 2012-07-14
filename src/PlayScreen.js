@@ -106,6 +106,10 @@ define(
         x = oldBall.pos.x;
         y = 32;
       }
+      else if (oldBall.top <= 32) {
+        x = oldBall.pos.x;
+        y = 224;
+      }
       
       this.spawnPosition.y = BALL_FLOOR_Y;
       

@@ -45,5 +45,6 @@
     <property name="to" value="scr009"/>
    </properties>
   </object>
+  <object name="launch_target" x="32" y="192" width="32" height="32"/>
  </objectgroup>
 </map>

@@ -22,6 +22,8 @@ define(
     "src/MagnetPadEntity",
     "src/MagnetEntity",
     "src/ArrowEntity",
+    "src/LauncherEntity",
+    "src/LaunchTargetEntity",
   ],
   function (
     me,
@@ -45,7 +47,9 @@ define(
     PointsEntity,
     MagnetPadEntity,
     MagnetEntity,
-    ArrowEntity
+    ArrowEntity,
+    LauncherEntity,
+    LaunchTargetEntity
   ) {
     
   var app = {
@@ -76,6 +80,8 @@ define(
       me.entityPool.add("magnet_pad", MagnetPadEntity);
       me.entityPool.add("magnet", MagnetEntity);
       me.entityPool.add("arrow", ArrowEntity);
+      me.entityPool.add("launcher", LauncherEntity);
+      me.entityPool.add("launch_target", LaunchTargetEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");
