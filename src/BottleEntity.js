@@ -6,7 +6,7 @@ define(["src/me"], function (me) {
 
       this.parent(x, y+32, settings);
       
-      this.collidable = true;
+      this.collidable = false;
     },
   });
 

@@ -39,6 +39,7 @@ define(
       this.accel.y = 0;
       this.friction.x = 0.04;
       this.gravity = 0.5;
+      this.lastVel = this.vel.clone();
       
       this.addAnimation("move", [0,1,2,3]);
       this.addAnimation("appear", [4,5,6,7]);
@@ -51,7 +52,6 @@ define(
         this.setCurrentAnimation("move");
       }
       
-      this.inBottle = false;
       me.game.HUD.setItemValue("speed", this.vel.x);
       this.launchTarget = null;
     },
@@ -86,13 +86,15 @@ define(
 
       var falling = this.falling;
       var velY = this.vel.y;
+      var lastY = this.pos.y;
       var collision = this.updateMovement();
+      var movedY = lastY != this.pos.y;
       
       if (velY == 0 && this.vel.y > 0) {
         this.falling = true;
       }
       
-      if (this.falling) {
+      if (this.falling && movedY) {
         this.maxVel.y += 0.2;
         if (this.maxVel.y > MAX_Y_VELOCITY) {
           this.maxVel.y = MAX_Y_VELOCITY;
@@ -108,7 +110,7 @@ define(
       }
       
       if (collision.y && falling) {
-        if (global.listenBallKeys && me.input.isKeyPressed('jump') && !this.inBottle) {
+        if (global.listenBallKeys && me.input.isKeyPressed('jump') && movedY) {
           this.maxVel.y += 3;
           if (this.maxVel.y > MAX_Y_VELOCITY) {
             this.maxVel.y = MAX_Y_VELOCITY;
@@ -124,7 +126,7 @@ define(
       
       if (collision.y) {
         if (global.listenBallKeys && me.input.isKeyPressed('left')) {
-          if (this.isBouncing() && !this.inBottle) {
+          if (this.isBouncing() && movedY) {
             this.vel.x = -this.maxVel.y;
             this.maxVel.x = this.maxVel.y * MAX_X_VEL_COEFF;
           }
@@ -134,7 +136,7 @@ define(
           }
         }
         else if (global.listenBallKeys && me.input.isKeyPressed('right')) {
-          if (this.isBouncing() && !this.inBottle) {
+          if (this.isBouncing() && movedY) {
             this.vel.x = this.maxVel.y;
             this.maxVel.x = this.maxVel.y * MAX_X_VEL_COEFF;
           }
@@ -156,7 +158,6 @@ define(
       this.animationspeed = this.vel.x == 0 ? 0 : 1 / Math.abs(this.vel.x);
 
       var res = me.game.collide(this);
-      this.inBottle = false;
       
       if (res) {
         if (res.obj.name == "portal") {
@@ -180,9 +181,6 @@ define(
         else if (res.obj.name == "magnet_pad" && global.ballState != "attract") {
           this.attract();
         }
-        else if (res.obj.name == "bottle") {
-          this.inBottle = true;
-        }
         else if (res.obj.name == "launcher" && global.ballState != "launchJump") {
           this.launch(res.obj);
         }
@@ -193,8 +191,11 @@ define(
         this.parent();
       }
       
+      if (this.speedChanged()) {
+        me.game.HUD.setItemValue("speed", this.vel.x);
+      }
+      
       this.lastVel = this.vel.clone();
-      me.game.HUD.setItemValue("speed", this.vel.x);
 
       if (this.vel.x != 0 || this.vel.y != 0) {
         return true;
@@ -352,6 +353,10 @@ define(
         this.font.draw(context, text, this.pos.x - 3, this.pos.y - 15);
         this.font.draw(context, "maxVel.y:" + this.maxVel.y.round(2), this.pos.x - 3, this.pos.y - 5);
       }
+    },
+    
+    speedChanged: function () {
+      return this.vel.x != this.lastVel.x;
     },
     
   });
