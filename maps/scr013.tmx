@@ -52,5 +52,10 @@
   </object>
   <object name="spikes" x="112" y="64" width="32" height="32"/>
   <object name="glove_box" x="112" y="224" width="32" height="32"/>
+  <object name="portal" x="0" y="64" width="32" height="160">
+   <properties>
+    <property name="to" value="scr014"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
