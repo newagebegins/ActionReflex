@@ -313,6 +313,7 @@ define(
     },
     
     launchJump: function () {
+      this.maxVel.y = 5;
       this.vel.y = -5;
         
       if (!this.launchTarget) {
@@ -323,7 +324,11 @@ define(
       if (this.top <= this.launchTarget.top) {
         global.ballState = "launchLand";
         
-        var one = new me.Tween(this.pos).to({x: this.launchTarget.left + 32, y: this.launchTarget.top - 32}, 200);
+        var oneX = this.launchTarget.left + 32;
+        if (this.launchTarget.left > this.left) {
+          oneX = this.launchTarget.left - 32;
+        }
+        var one = new me.Tween(this.pos).to({x: oneX, y: this.launchTarget.top - 32}, 200);
         var two = new me.Tween(this.pos).to({x: this.launchTarget.left, y: this.launchTarget.top}, 200);
         two.onComplete(this.onAfterLaunchLandEvent.bind(this));
 
