@@ -50,5 +50,10 @@
     <property name="to" value="scr010"/>
    </properties>
   </object>
+  <object name="portal" x="0" y="64" width="32" height="160">
+   <properties>
+    <property name="to" value="scr012"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
