@@ -47,5 +47,10 @@
     <property name="amount" value="200"/>
    </properties>
   </object>
+  <object name="portal" x="480" y="64" width="32" height="160">
+   <properties>
+    <property name="to" value="scr007"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
