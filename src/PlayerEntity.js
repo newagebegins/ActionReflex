@@ -19,7 +19,7 @@ define(
   var MAX_Y_VELOCITY = 11;
   var INITIAL_Y_VELOCITY = 4;
   var APPEAR_DISAPPEAR_DURATION = 1200;
-  var MAX_X_VEL_COEFF = 0.625;
+  var MAX_X_VEL_COEFF = 0.57;
 
   var PlayerEntity = me.ObjectEntity.extend({
     

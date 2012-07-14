@@ -245,6 +245,11 @@ define(function () {
       type: "tmx",
       src: "maps/scr023.tmx"
     },
+    {
+      name: "scr024",
+      type: "tmx",
+      src: "maps/scr024.tmx"
+    },
   ];
   return resources;
 });
