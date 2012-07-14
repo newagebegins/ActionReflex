@@ -71,11 +71,6 @@ define(function () {
       src: "images/splash.gif"
     },
     {
-      name: "pit",
-      type: "image",
-      src: "images/pit.gif"
-    },
-    {
       name: "vent_pad",
       type: "image",
       src: "images/vent_pad.gif"
@@ -259,6 +254,11 @@ define(function () {
       name: "scr024",
       type: "tmx",
       src: "maps/scr024.tmx"
+    },
+    {
+      name: "scr025",
+      type: "tmx",
+      src: "maps/scr025.tmx"
     },
   ];
   return resources;
