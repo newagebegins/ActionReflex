@@ -7,7 +7,7 @@ define(["src/me"], function (me) {
       this.parent(x, y+32, settings);
       
       this.collidable = true;
-      this.updateColRect(0, 0, 0, 0);
+      this.updateColRect(0, 1, 48, 1);
       this.type = "lethal";
       
       this.frame = 0;
@@ -24,7 +24,7 @@ define(["src/me"], function (me) {
       }
       this.frame = frame;
       if (frame == 0) {
-        this.updateColRect(0, 0, 0, 0);
+        this.updateColRect(0, 1, 48, 1);
       }
       else if (frame == 1) {
         this.updateColRect(0, this.width, 32, 16);
