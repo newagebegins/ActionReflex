@@ -7,7 +7,7 @@ define(["src/me", "src/global"], function (me, global) {
 
       this.parent(x, y, settings);
 
-      this.setVelocity(0, 2);
+      this.setVelocity(0, 3.5);
       
       this.collidable = true;
       this.updateColRect(4, 8, 0, 10);
