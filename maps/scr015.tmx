@@ -45,5 +45,10 @@
   </object>
   <object name="pit" x="352" y="224" width="48" height="16"/>
   <object name="vent_exit" x="400" y="32" width="32" height="48"/>
+  <object name="portal" x="0" y="64" width="32" height="160">
+   <properties>
+    <property name="to" value="scr016"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

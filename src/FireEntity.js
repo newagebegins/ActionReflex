@@ -20,7 +20,7 @@ define(["src/me"], function (me) {
       this.parent();
       var frame = this.fireFrames[this.current.idx];
       if (frame == this.frame) {
-        return;
+        return false;
       }
       this.frame = frame;
       if (frame == 0) {
@@ -35,6 +35,7 @@ define(["src/me"], function (me) {
       else if (frame == 3) {
         this.updateColRect(0, this.width, 0, 48);
       }
+      return true;
     },
   });
 
