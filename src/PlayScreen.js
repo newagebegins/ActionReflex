@@ -145,6 +145,7 @@ define(
         y = oldBall.pos.y;
       }
       else if (oldBall.bottom >= 256) {
+        this.spawnPosition.x = 32;
         x = oldBall.pos.x;
         y = 32;
       }

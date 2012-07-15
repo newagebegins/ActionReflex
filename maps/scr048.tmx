@@ -54,5 +54,6 @@
     <property name="amount" value="100"/>
    </properties>
   </object>
+  <object name="launch_target" x="448" y="192" width="32" height="32"/>
  </objectgroup>
 </map>
