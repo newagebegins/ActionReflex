@@ -21,8 +21,9 @@ define(["src/me", "src/config", "src/global"], function (me, config, global) {
       this.timePassed += me.timer.tick / me.sys.fps;
       
       if (this.timePassed > config.timelineUnitDuration) {
-        this.timePassed -= config.timelineUnitDuration;
-        me.game.HUD.updateItemValue("timeline", -1);
+        var decrement = this.timePassed / config.timelineUnitDuration;
+        me.game.HUD.updateItemValue("timeline", -decrement);
+        this.timePassed = 0;
       }
       
       return false;
