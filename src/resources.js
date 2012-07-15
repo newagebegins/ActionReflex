@@ -290,6 +290,11 @@ define(function () {
       type: "tmx",
       src: "maps/scr026.tmx"
     },
+    {
+      name: "scr027",
+      type: "tmx",
+      src: "maps/scr027.tmx"
+    },
   ];
   return resources;
 });
