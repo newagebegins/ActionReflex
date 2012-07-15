@@ -31,6 +31,7 @@ define(
     "src/GameOverScreen",
     "src/StartEntity",
     "src/ExitEntity",
+    "src/FroggyEntity",
   ],
   function (
     me,
@@ -63,7 +64,8 @@ define(
     TitleScreenTextEntity,
     GameOverScreen,
     StartEntity,
-    ExitEntity
+    ExitEntity,
+    FroggyEntity
   ) {
     
   var app = {
@@ -103,6 +105,7 @@ define(
       me.entityPool.add("title_screen_text", TitleScreenTextEntity);
       me.entityPool.add("start", StartEntity);
       me.entityPool.add("exit", ExitEntity);
+      me.entityPool.add("froggy", FroggyEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");

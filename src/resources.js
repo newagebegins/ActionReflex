@@ -161,6 +161,11 @@ define(function () {
       src: "images/timeline.gif"
     },
     {
+      name: "froggy",
+      type: "image",
+      src: "images/froggy.gif"
+    },
+    {
       name: "title",
       type: "tmx",
       src: "maps/title.tmx"
