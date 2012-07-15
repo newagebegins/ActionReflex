@@ -1,4 +1,4 @@
-define(["src/me", "src/config", "src/global"], function (me, config, global) {
+define(["src/me", "src/global", "src/ScoreManager"], function (me, global, scoreManager) {
   var PointsEntity = me.CollectableEntity.extend({
     
     init: function (x, y, settings) {
@@ -13,19 +13,10 @@ define(["src/me", "src/config", "src/global"], function (me, config, global) {
     },
 
     onCollision: function () {
-      me.gamestat.updateValue("score", this.amount);
-      this.updateBuoy();
+      scoreManager.add(this.amount);
       this.collidable = false;
       global.collectedPoints[this.GUID] = true;
       me.game.remove(this);
-    },
-    
-    updateBuoy: function () {
-      me.gamestat.updateValue("ptsNextBuoy", -this.amount);
-      if (me.gamestat.getItemValue("ptsNextBuoy") <= 0) {
-        me.game.HUD.updateItemValue("buoy", 1);
-        me.gamestat.setValue("ptsNextBuoy", config.bouyCost + me.gamestat.getItemValue("ptsNextBuoy"));
-      }
     },
     
   });

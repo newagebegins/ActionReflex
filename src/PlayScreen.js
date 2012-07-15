@@ -82,6 +82,9 @@ define(
     
     /** @private */
     removeCollectedPoints: function () {
+      if (global.collectedPoints.length == 0) {
+        return;
+      }
       var points = me.game.getEntityByName("points");
       for (var i in points) {
         if (global.collectedPoints[points[i].GUID]) {
@@ -194,6 +197,14 @@ define(
       var timeline = new TimelineEntity();
       me.game.add(timeline, 999);
       me.game.sort();
+    },
+    
+    proceedToNextArea: function () {
+      global.ballState = "normal";
+      var exit = me.game.getEntityByName("exit")[0];
+      this.loadLevel(exit.to);
+      me.game.HUD.setItemValue("timeline", config.timelineWidth);
+      this.resetLevel();
     },
     
   });

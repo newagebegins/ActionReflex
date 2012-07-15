@@ -10,7 +10,7 @@ define(["src/me"], function (me) {
     while (str.length < length)
       str = padString + str;
     return str;
-  }
+  };
   
   return util;
 });

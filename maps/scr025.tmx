@@ -51,6 +51,10 @@
     <property name="image" value="flag_red"/>
    </properties>
   </object>
-  <object name="exit" x="352" y="192" width="32" height="32"/>
+  <object name="exit" x="352" y="192" width="32" height="32">
+   <properties>
+    <property name="to" value="scr_a2_001"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

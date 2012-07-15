@@ -6,6 +6,7 @@ define(
     "src/util",
     "src/SplashEntity",
     "src/ArrowEntity",
+    "src/TimeAwardEntity",
   ],
   function (
     me,
@@ -13,7 +14,8 @@ define(
     global,
     util,
     SplashEntity,
-    ArrowEntity
+    ArrowEntity,
+    TimeAwardEntity
   ) {
       
   var MAX_Y_VELOCITY = 11;
@@ -404,7 +406,6 @@ define(
     
     exit: function (exit) {
       global.ballState = "exit";
-      global.listenBallKeys = false;
       var tube = me.game.getEntityByName("tube")[0];
       var tubeInitialY = tube.pos.y;
       
@@ -412,6 +413,12 @@ define(
       var tubeDown = new me.Tween(tube.pos).to({y: 79}, 1200);
       var ballUp = new me.Tween(this.pos).to({y: tube.pos.y + 10}, 1200);
       var tubeUp = new me.Tween(tube.pos).to({y: tubeInitialY}, 1200);
+      
+      tubeUp.onComplete(function () {
+        var award = new TimeAwardEntity();
+        me.game.add(award, 1);
+        me.game.sort();
+      });
       
       align.chain(tubeDown);
       tubeDown.chain(ballUp);
