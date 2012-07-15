@@ -4,4 +4,5 @@ define({
   listenBallKeys: true,
   launchTo: "",
   collectedPoints: {},
+  storedFroggies: {},
 });

@@ -34,6 +34,7 @@ define(
     
     onResetEvent: function () {
       global.collectedPoints = {};
+      global.storedFroggies = {};
       this.loadLevel(config.startScreen);
 
       me.game.addHUD(0, 0, config.display.width, config.display.height);
