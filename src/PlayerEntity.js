@@ -168,7 +168,7 @@ define(
       if (res) {
         if (res.obj.name == "portal") {
           me.state.current().loadLevel(res.obj.to);
-          me.state.current().createBall(this);
+          me.state.current().resetLevel(this);
         }
         else if (res.type == "lethal") {
           this.disappear();
@@ -234,7 +234,7 @@ define(
     onAfterDisappearEvent: function () {
       me.state.current().reloadLevel();
       global.ballState = "appearAfterDeath";
-      me.state.current().createBall();
+      me.state.current().resetLevel();
     },
     
     onAfterAppearAfterDeathEvent: function () {
@@ -312,7 +312,7 @@ define(
           var vent = me.game.getEntityByName("vent")[0];
           vent.setCurrentAnimation("suck", function () {
             me.state.current().loadLevel(vent.to);
-            me.state.current().createBall();
+            me.state.current().resetLevel();
           });
         })
         .start();

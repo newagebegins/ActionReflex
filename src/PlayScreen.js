@@ -9,6 +9,7 @@ define(
     "src/Speed",
     "src/BuoyHUD",
     "src/TimelineHUD",
+    "src/TimelineEntity",
   ],
   function (
     me,
@@ -19,7 +20,8 @@ define(
     Score,
     Speed,
     BuoyHUD,
-    TimelineHUD
+    TimelineHUD,
+    TimelineEntity
   ) {
       
   var BALL_FLOOR_Y = 192;
@@ -38,6 +40,7 @@ define(
       me.game.HUD.setItemValue("buoy", config.bouyInitialCount);
       
       me.game.HUD.addItem("timeline", new TimelineHUD(16, 304));
+      me.game.HUD.setItemValue("timeline", config.timelineWidth);
       
       me.gamestat.add("ptsNextBuoy", config.bouyCost);
       
@@ -48,7 +51,12 @@ define(
         this.spawnPosition = {x: 32, y: BALL_FLOOR_Y};
       }
       
-      this.createBall();
+      this.resetLevel();
+    },
+    
+    resetLevel: function (ball) {
+      this.createBall(ball);
+      this.createTimeline();
     },
     
     onDestroyEvent: function () {
@@ -172,6 +180,12 @@ define(
         global.ball.pos.x = this.spawnPosition.x;
         global.ball.pos.y = this.spawnPosition.y;
       }
+    },
+    
+    createTimeline: function () {
+      var timeline = new TimelineEntity();
+      me.game.add(timeline, 999);
+      me.game.sort();
     },
     
   });

@@ -1,4 +1,4 @@
-define(["src/me"], function (me) {
+define(["src/me", "src/config"], function (me, config) {
   
   var TimelineHUD = me.HUD_Item.extend({
     
@@ -14,7 +14,15 @@ define(["src/me"], function (me) {
       this.font.draw(context, "TIME", this.pos.x + x + 70, this.pos.y + y);
       
       context.drawImage(this.timelineImage, this.pos.x + x, this.pos.y + y);
-    }
+      this.paintTimeline(context, x, y);
+    },
+    
+    paintTimeline: function (context, x, y) {
+      var xpos = this.pos.x + x + 16;
+      var ypos = this.pos.y + y + 12;
+      context.fillStyle = "#000000";
+      context.fillRect(xpos + this.value, ypos, config.timelineWidth - this.value, 8);
+    },
 
   });
 
