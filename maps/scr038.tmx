@@ -50,5 +50,6 @@
    </properties>
   </object>
   <object name="hole" x="240" y="192" width="32" height="32"/>
+  <object name="launch_target" x="32" y="192" width="32" height="32"/>
  </objectgroup>
 </map>
