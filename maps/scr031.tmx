@@ -51,7 +51,7 @@
   </object>
   <object name="portal" x="64" y="256" width="384" height="32">
    <properties>
-    <property name="to" value="scr033"/>
+    <property name="to" value="scr034"/>
    </properties>
   </object>
  </objectgroup>
