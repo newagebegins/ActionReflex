@@ -32,6 +32,7 @@ define(
     "src/StartEntity",
     "src/ExitEntity",
     "src/FroggyEntity",
+    "src/HoleEntity",
   ],
   function (
     me,
@@ -65,7 +66,8 @@ define(
     GameOverScreen,
     StartEntity,
     ExitEntity,
-    FroggyEntity
+    FroggyEntity,
+    HoleEntity
   ) {
     
   var app = {
@@ -106,6 +108,7 @@ define(
       me.entityPool.add("start", StartEntity);
       me.entityPool.add("exit", ExitEntity);
       me.entityPool.add("froggy", FroggyEntity);
+      me.entityPool.add("hole", HoleEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");

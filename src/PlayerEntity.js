@@ -21,7 +21,7 @@ define(
   var MAX_Y_VELOCITY = 11;
   var INITIAL_Y_VELOCITY = 4;
   var APPEAR_DISAPPEAR_DURATION = 1200;
-  var MAX_X_VEL_COEFF = 0.57;
+  var MAX_X_VEL_COEFF = 0.63;
 
   var PlayerEntity = me.ObjectEntity.extend({
     
@@ -59,6 +59,8 @@ define(
       
       this.bouyImage = me.loader.getImage("buoy");
       this.hasBuoy = false;
+      
+      this.updateColRect(2, 30, 2, 30);
     },
     
     update: function () {
@@ -66,7 +68,8 @@ define(
           global.ballState == "drown" ||
           global.ballState == "fallIntoPit" ||
           global.ballState == "attract" ||
-          global.ballState == "exit"
+          global.ballState == "exit" ||
+          global.ballState == "fallIntoHole"
       ) {
         return false;
       }
@@ -208,6 +211,9 @@ define(
         }
         else if (res.obj.name == "exit" && global.ballState != "exit") {
           this.exit(res.obj);
+        }
+        else if (res.obj.name == "hole" && global.ballState != "fallIntoHole") {
+          this.fallIntoHole(res.obj);
         }
       }
       
@@ -425,6 +431,20 @@ define(
       align.chain(tubeDown);
       tubeDown.chain(ballUp);
       ballUp.chain(tubeUp);
+      align.start();
+    },
+    
+    fallIntoHole: function (hole) {
+      global.ballState = "fallIntoHole";
+      
+      var align = new me.Tween(this.pos).to({x: hole.pos.x, y: hole.pos.y}, 200);
+      var moveDown = new me.Tween(this.pos).to({y: hole.pos.y + 30}, 200);
+      
+      moveDown.onComplete(function () {
+        global.ballState = "normal";
+      });
+      
+      align.chain(moveDown);
       align.start();
     },
     
