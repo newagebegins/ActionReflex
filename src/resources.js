@@ -371,6 +371,11 @@ define(function () {
       type: "tmx",
       src: "maps/scr040.tmx"
     },
+    {
+      name: "scr041",
+      type: "tmx",
+      src: "maps/scr041.tmx"
+    },
   ];
   
   return resources;
