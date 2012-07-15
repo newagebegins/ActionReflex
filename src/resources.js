@@ -1,4 +1,5 @@
 define(function () {
+  
   var resources = [
     {
       name: "tiles",
@@ -315,6 +316,12 @@ define(function () {
       type: "tmx",
       src: "maps/scr029.tmx"
     },
+    {
+      name: "scr030",
+      type: "tmx",
+      src: "maps/scr030.tmx"
+    },
   ];
+  
   return resources;
 });
