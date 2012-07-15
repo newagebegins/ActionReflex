@@ -28,6 +28,7 @@ define(
     "src/TitleScreen",
     "src/BouncingBallEntity",
     "src/TitleScreenTextEntity",
+    "src/GameOverScreen",
   ],
   function (
     me,
@@ -57,7 +58,8 @@ define(
     WaterTriggerEntity,
     TitleScreen,
     BouncingBallEntity,
-    TitleScreenTextEntity
+    TitleScreenTextEntity,
+    GameOverScreen
   ) {
     
   var app = {
@@ -71,6 +73,7 @@ define(
     loaded: function () {
       me.state.set(me.state.MENU, new TitleScreen());
       me.state.set(me.state.PLAY, new PlayScreen());
+      me.state.set(me.state.GAMEOVER, new GameOverScreen());
 
       me.entityPool.add("flag", FlagEntity);
       me.entityPool.add("cannon", CannonEntity);
@@ -100,13 +103,11 @@ define(
       me.input.bindKey(me.input.KEY.UP, "jump");
       
       me.debug.renderHitBox = config.debug;
+      
+      me.gamestat.add("score", config.initialScore);
+      me.gamestat.add("completed", config.initialCompleted);
 
-      if (config.showTitleScreen) {
-        me.state.change(me.state.MENU);
-      }
-      else {
-        me.state.change(me.state.PLAY);
-      }
+      me.state.change(config.initialScreen);
     },
   };
 

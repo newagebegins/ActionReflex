@@ -1,4 +1,4 @@
-define(["src/me", "src/config"], function (me, config) {
+define(["src/me", "src/config", "src/global"], function (me, config, global) {
   
   var LaunchTargetEntity = me.InvisibleEntity.extend({
     
@@ -9,9 +9,13 @@ define(["src/me", "src/config"], function (me, config) {
     },
     
     update: function () {
+      if (global.ballState != "normal") {
+        return false;
+      }
+      
       if (me.game.HUD.getItemValue("timeline") <= 0) {
-        // game over
-        return;
+        me.state.change(me.state.GAMEOVER);
+        return false;
       }
       
       this.timePassed += me.timer.tick / me.sys.fps;
@@ -20,6 +24,8 @@ define(["src/me", "src/config"], function (me, config) {
         this.timePassed -= config.timelineUnitDuration;
         me.game.HUD.updateItemValue("timeline", -1);
       }
+      
+      return false;
     },
     
   });
