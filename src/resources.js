@@ -146,6 +146,11 @@ define(function () {
       src: "images/buoy.gif"
     },
     {
+      name: "hammer_hud",
+      type: "image",
+      src: "images/hammer_hud.gif"
+    },
+    {
       name: "timeline",
       type: "image",
       src: "images/timeline.gif"

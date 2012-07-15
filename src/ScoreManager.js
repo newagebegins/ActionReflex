@@ -8,10 +8,19 @@ define(["src/me", "src/config"], function (me, config) {
     }
   }
   
+  function updateHammer(amount) {
+    me.gamestat.updateValue("ptsNextHammer", -amount);
+    if (me.gamestat.getItemValue("ptsNextHammer") <= 0) {
+      me.game.HUD.updateItemValue("hammer", 1);
+      me.gamestat.setValue("ptsNextHammer", config.hammerCost + me.gamestat.getItemValue("ptsNextHammer"));
+    }
+  }
+  
   return {
     add: function (amount) {
       me.gamestat.updateValue("score", amount);
       updateBuoy(amount);
+      updateHammer(amount);
     },
   };
 });
