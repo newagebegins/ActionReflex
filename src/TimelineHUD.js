@@ -5,7 +5,7 @@ define(["src/me", "src/config"], function (me, config) {
     init: function (x, y) {
       this.parent(x, y);
       
-      this.font = new me.Font('editundo', 24, 'white');
+      this.font = new me.Font('editundo', config.fontSize, 'white');
       this.timelineImage = me.loader.getImage("timeline");
     },
     

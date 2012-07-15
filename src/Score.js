@@ -1,9 +1,9 @@
-define(["src/me"], function (me) {
+define(["src/me", "src/config"], function (me, config) {
   var Score = me.HUD_Item.extend({
     
     init: function (x, y) {
       this.parent(x, y);
-      this.font = new me.Font('editundo', 24, 'white');
+      this.font = new me.Font('editundo', config.fontSize, 'white');
     },
     
     draw: function (context, x, y) {

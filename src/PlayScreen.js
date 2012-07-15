@@ -34,7 +34,7 @@ define(
       me.game.addHUD(0, 0, config.display.width, config.display.height);
       me.game.HUD.addItem("border", new PlayScreenBorder(0, 0));
       
-      me.game.HUD.addItem("score", new Score(365, 384));
+      me.game.HUD.addItem("score", new Score(363, 384));
       me.game.HUD.setItemValue("score", me.gamestat.getItemValue("score"));
       
       me.game.HUD.addItem("speed", new Speed(16, 351));

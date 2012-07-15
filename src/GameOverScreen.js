@@ -2,13 +2,11 @@ define(
   [
     "src/me",
     "src/config",
-    "src/PlayScreenBorder",
     "src/FlashFont",
   ],
   function (
     me,
     config,
-    PlayScreenBorder,
     FlashFont
   ) {
   
@@ -24,8 +22,8 @@ define(
 
     onResetEvent: function () {
       if (!this.font) {
-        this.font = new me.Font('editundo', 28, '#00c5c5');
-        this.flashFont = new FlashFont('editundo', 28);
+        this.font = new me.Font('editundo', config.fontSize, '#00c5c5');
+        this.flashFont = new FlashFont('editundo', config.fontSize);
         this.borderImage = me.loader.getImage("border");
       }
       
@@ -55,7 +53,7 @@ define(
       this.font.draw(context, "YOU COMPLETED    " + completed, 100, 185);
       
       this.font.color = "#c5c5c5";
-      this.font.draw(context, "%", 385, 185);
+      this.font.draw(context, "%", 390, 185);
       
       this.font.color = "#c5c5c5";
       this.font.draw(context, "PRESS       TO CONTINUE", 90, 340);

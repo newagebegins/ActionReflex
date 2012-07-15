@@ -6,6 +6,7 @@ define(["src/me"], function (me) {
       width: 512,
       height: 384,
     },
+    fontSize: 28,
     initialScreen: me.state.MENU,
     ballAppearThroughTubeAnimation: true,
     startScreen: "scr001",

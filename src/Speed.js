@@ -1,11 +1,11 @@
-define(["src/me", "src/global"], function (me, global) {
+define(["src/me", "src/global", "src/config"], function (me, global, config) {
   var ARROWS_NUM = 8;
   
   var Speed = me.HUD_Item.extend({
     
     init: function (x, y) {
       this.parent(x, y);
-      this.font = new me.Font('editundo', 24, '#00b500');
+      this.font = new me.Font('editundo', config.fontSize, '#00b500');
       this.ballImage = me.loader.getImage("ball");
       this.speedImage = me.loader.getImage("speed");
     },
