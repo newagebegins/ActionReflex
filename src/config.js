@@ -9,7 +9,7 @@ define(["src/me"], function (me) {
     fontSize: 28,
     initialScreen: me.state.PLAY,
     ballAppearThroughTubeAnimation: true,
-    startScreen: "scr040",
+    startScreen: "scr035",
 
 //    startPosition: {x:300, y:192},
     startPosition: null,
