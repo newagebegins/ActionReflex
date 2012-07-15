@@ -7,15 +7,16 @@ define(["src/me"], function (me) {
       height: 384,
     },
     fontSize: 28,
-    initialScreen: me.state.MENU,
+    initialScreen: me.state.PLAY,
     ballAppearThroughTubeAnimation: true,
-    startScreen: "scr001",
+    startScreen: "scr026",
 
-  //  startPosition: {x:381, y:192},
+//    startPosition: {x:300, y:192},
     startPosition: null,
     
     initialScore: 0,
     initialCompleted: 0,
+    screensTotal: 75,
 
     bouyInitialCount: 0,
     bouyCost: 500,

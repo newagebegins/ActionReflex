@@ -53,7 +53,7 @@
   </object>
   <object name="exit" x="352" y="192" width="32" height="32">
    <properties>
-    <property name="to" value="scr_a2_001"/>
+    <property name="to" value="scr026"/>
    </properties>
   </object>
  </objectgroup>

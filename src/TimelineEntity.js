@@ -1,6 +1,6 @@
 define(["src/me", "src/config", "src/global"], function (me, config, global) {
   
-  var LaunchTargetEntity = me.InvisibleEntity.extend({
+  var TimelineEntity = me.InvisibleEntity.extend({
     
     init: function () {
       this.parent(0, 0, {});
@@ -14,6 +14,9 @@ define(["src/me", "src/config", "src/global"], function (me, config, global) {
       }
       
       if (me.game.HUD.getItemValue("timeline") <= 0) {
+        var scrNum = parseInt(me.levelDirector.getCurrentLevelId().match(/scr0*([0-9]*)/)[1]);
+        me.gamestat.setValue("completed", ((100 * scrNum) / config.screensTotal).round(0));
+        
         me.state.change(me.state.GAMEOVER);
         return false;
       }
@@ -31,5 +34,5 @@ define(["src/me", "src/config", "src/global"], function (me, config, global) {
     
   });
 
-  return LaunchTargetEntity;
+  return TimelineEntity;
 });

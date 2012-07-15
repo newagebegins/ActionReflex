@@ -281,9 +281,9 @@ define(function () {
       src: "maps/scr025.tmx"
     },
     {
-      name: "scr_a2_001",
+      name: "scr026",
       type: "tmx",
-      src: "maps/scr_a2_001.tmx"
+      src: "maps/scr026.tmx"
     },
   ];
   return resources;
