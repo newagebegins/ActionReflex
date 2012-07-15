@@ -29,6 +29,7 @@ define(
   var PlayScreen = me.ScreenObject.extend({
     
     onResetEvent: function () {
+      global.collectedPoints = {};
       this.loadLevel(config.startScreen);
 
       me.game.addHUD(0, 0, config.display.width, config.display.height);
@@ -46,6 +47,9 @@ define(
       me.game.HUD.setItemValue("timeline", config.timelineWidth);
       
       me.gamestat.add("ptsNextBuoy", config.bouyCost);
+      
+      me.gamestat.setValue("score", config.initialScore);
+      me.gamestat.setValue("completed", config.initialCompleted);
       
       if (config.startPosition) {
         this.spawnPosition = {x: config.startPosition.x, y: config.startPosition.y};

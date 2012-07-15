@@ -13,7 +13,7 @@ define(["src/me", "src/config", "src/global"], function (me, config, global) {
     },
 
     onCollision: function () {
-      me.game.HUD.updateItemValue("score", this.amount);
+      me.gamestat.updateValue("score", this.amount);
       this.updateBuoy();
       this.collidable = false;
       global.collectedPoints[this.GUID] = true;

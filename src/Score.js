@@ -10,7 +10,8 @@ define(["src/me", "src/config"], function (me, config) {
       this.font.color = "#c5c500";
       this.font.draw(context, "SCORE", this.pos.x + x, this.pos.y + y);
       this.font.color = "#00c5c5";
-      this.font.draw(context, ("" + this.value).lpad("0", 5), this.pos.x + x + 80, this.pos.y + y);
+      var score = ("" + me.gamestat.getItemValue("score")).lpad("0", 5);
+      this.font.draw(context, score, this.pos.x + x + 80, this.pos.y + y);
     }
 
   });
