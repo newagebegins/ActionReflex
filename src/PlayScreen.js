@@ -98,10 +98,10 @@ define(
         this.suck();
       }
       else {
-        var tube = me.game.getEntityByName("tube")[0];
+        var start = me.game.getEntityByName("start")[0];
         
-        if (tube) {
-          this.tube(tube);
+        if (start) {
+          this.start();
         }
         else {
           this.instantiateBall(this.spawnPosition.x, this.spawnPosition.y);
@@ -163,7 +163,8 @@ define(
     },
     
     /** @private */
-    tube: function (tube) {
+    start: function () {
+      var tube = me.game.getEntityByName("tube")[0];
       this.instantiateBall(tube.pos.x, tube.pos.y + 10);
 
       if (config.ballAppearThroughTubeAnimation && global.ballState == "normal") {

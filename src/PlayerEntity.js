@@ -63,7 +63,8 @@ define(
       if (global.ballState == "appearThroughTube" ||
           global.ballState == "drown" ||
           global.ballState == "fallIntoPit" ||
-          global.ballState == "attract"
+          global.ballState == "attract" ||
+          global.ballState == "exit"
       ) {
         return false;
       }
@@ -202,6 +203,9 @@ define(
         }
         else if (res.obj.name == "launcher" && global.ballState != "launchJump") {
           this.launch(res.obj);
+        }
+        else if (res.obj.name == "exit" && global.ballState != "exit") {
+          this.exit(res.obj);
         }
       }
       
@@ -396,6 +400,23 @@ define(
     
     speedChanged: function () {
       return this.vel.x != this.lastVel.x;
+    },
+    
+    exit: function (exit) {
+      global.ballState = "exit";
+      global.listenBallKeys = false;
+      var tube = me.game.getEntityByName("tube")[0];
+      var tubeInitialY = tube.pos.y;
+      
+      var align = new me.Tween(this.pos).to({x: exit.pos.x, y: exit.pos.y}, 200);
+      var tubeDown = new me.Tween(tube.pos).to({y: 79}, 1200);
+      var ballUp = new me.Tween(this.pos).to({y: tube.pos.y + 10}, 1200);
+      var tubeUp = new me.Tween(tube.pos).to({y: tubeInitialY}, 1200);
+      
+      align.chain(tubeDown);
+      tubeDown.chain(ballUp);
+      ballUp.chain(tubeUp);
+      align.start();
     },
     
   });

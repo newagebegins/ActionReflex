@@ -29,6 +29,8 @@ define(
     "src/BouncingBallEntity",
     "src/TitleScreenTextEntity",
     "src/GameOverScreen",
+    "src/StartEntity",
+    "src/ExitEntity",
   ],
   function (
     me,
@@ -59,7 +61,9 @@ define(
     TitleScreen,
     BouncingBallEntity,
     TitleScreenTextEntity,
-    GameOverScreen
+    GameOverScreen,
+    StartEntity,
+    ExitEntity
   ) {
     
   var app = {
@@ -97,6 +101,8 @@ define(
       me.entityPool.add("water_trigger", WaterTriggerEntity);
       me.entityPool.add("bouncing_ball", BouncingBallEntity);
       me.entityPool.add("title_screen_text", TitleScreenTextEntity);
+      me.entityPool.add("start", StartEntity);
+      me.entityPool.add("exit", ExitEntity);
 
       me.input.bindKey(me.input.KEY.LEFT, "left");
       me.input.bindKey(me.input.KEY.RIGHT, "right");
