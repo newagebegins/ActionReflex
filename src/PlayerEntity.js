@@ -237,7 +237,9 @@ define(
       return this.maxVel.y > INITIAL_Y_VELOCITY;
     },
     
-    onAfterDisappearEvent: function () {
+    onAfterDeath: function () {
+      var timeline = me.game.getEntityByName("timeline")[0];
+      timeline.penalty();
       me.state.current().reloadLevel();
       global.ballState = "appearAfterDeath";
       me.state.current().resetLevel();
@@ -251,7 +253,7 @@ define(
     disappear: function () {
       this.setCurrentAnimation("disappear");
       global.ballState = "disappear";
-      util.delay(this.onAfterDisappearEvent.bind(this), APPEAR_DISAPPEAR_DURATION);
+      util.delay(this.onAfterDeath.bind(this), APPEAR_DISAPPEAR_DURATION);
     },
     
     drown: function (trigger) {
@@ -276,7 +278,7 @@ define(
           me.game.remove(self);
           var splash = new SplashEntity(splashX, splashY);
           splash.setCurrentAnimation("default", function () {
-            self.onAfterDisappearEvent();
+            self.onAfterDeath();
           });
           me.game.add(splash, 1);
           me.game.sort();
@@ -301,7 +303,7 @@ define(
       var fall = new me.Tween(this.pos)
         .to({y: trigger.pos.y + 18}, 800)
         .onComplete(function () {
-          self.onAfterDisappearEvent();
+          self.onAfterDeath();
         });
       
       fall.start();

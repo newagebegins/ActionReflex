@@ -9,7 +9,7 @@ define(["src/me"], function (me) {
     fontSize: 28,
     initialScreen: me.state.PLAY,
     ballAppearThroughTubeAnimation: true,
-    startScreen: "scr026",
+    startScreen: "scr004",
 
 //    startPosition: {x:300, y:192},
     startPosition: null,
@@ -23,6 +23,7 @@ define(["src/me"], function (me) {
 
     timelineWidth: 256, // in px
     timelineDuration: 432, // in sec
+    timePenalty: 4,
   };
   
   config.timelineUnitDuration = config.timelineDuration / config.timelineWidth;

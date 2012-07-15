@@ -1,11 +1,10 @@
 define(["src/me", "src/config", "src/global"], function (me, config, global) {
   
-  var TimelineEntity = me.InvisibleEntity.extend({
+  var TimelineEntity = Object.extend({
     
     init: function () {
-      this.parent(0, 0, {});
-      this.collidable = false;
       this.timePassed = 0;
+      this.name = "timeline";
     },
     
     update: function () {
@@ -30,6 +29,10 @@ define(["src/me", "src/config", "src/global"], function (me, config, global) {
       }
       
       return false;
+    },
+    
+    penalty: function () {
+      me.game.HUD.updateItemValue("timeline", -config.timePenalty);
     },
     
   });
