@@ -9,6 +9,7 @@ define(
     "src/Speed",
     "src/BuoyHUD",
     "src/HammerHUD",
+    "src/KeyHUD",
     "src/TimelineHUD",
     "src/TimelineEntity",
   ],
@@ -22,6 +23,7 @@ define(
     Speed,
     BuoyHUD,
     HammerHUD,
+    KeyHUD,
     TimelineHUD,
     TimelineEntity
   ) {
@@ -49,6 +51,10 @@ define(
       me.game.HUD.addItem("hammer", new HammerHUD(416, 288));
       me.game.HUD.setItemValue("hammer", config.hammerInitialCount);
       me.gamestat.add("ptsNextHammer", config.hammerCost);
+      
+      me.game.HUD.addItem("key", new KeyHUD(464, 288));
+      me.game.HUD.setItemValue("key", config.keyInitialCount);
+      me.gamestat.add("ptsNextKey", config.keyCost);
       
       me.game.HUD.addItem("timeline", new TimelineHUD(16, 304));
       me.game.HUD.setItemValue("timeline", config.timelineWidth);

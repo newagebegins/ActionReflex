@@ -151,6 +151,11 @@ define(function () {
       src: "images/hammer_hud.gif"
     },
     {
+      name: "key_hud",
+      type: "image",
+      src: "images/key_hud.gif"
+    },
+    {
       name: "timeline",
       type: "image",
       src: "images/timeline.gif"

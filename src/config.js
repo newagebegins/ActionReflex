@@ -9,7 +9,7 @@ define(["src/me"], function (me) {
     fontSize: 28,
     initialScreen: me.state.PLAY,
     ballAppearThroughTubeAnimation: true,
-    startScreen: "scr027",
+    startScreen: "scr025",
 
 //    startPosition: {x:300, y:192},
     startPosition: null,
@@ -23,6 +23,9 @@ define(["src/me"], function (me) {
     
     hammerInitialCount: 0,
     hammerCost: 700,
+    
+    keyInitialCount: 0,
+    keyCost: 900,
 
     timelineWidth: 256, // in px
     timelineDuration: 432, // in sec
