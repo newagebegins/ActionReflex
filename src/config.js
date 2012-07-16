@@ -9,10 +9,10 @@ define(["src/me"], function (me) {
     fontSize: 28,
     initialScreen: me.state.PLAY,
     ballAppearThroughTubeAnimation: true,
-    startScreen: "scr052",
+    startScreen: "scr055",
 
-    startPosition: {x:444, y:192},
-//    startPosition: null,
+//    startPosition: {x:444, y:192},
+    startPosition: null,
     
     initialScore: 0,
     initialCompleted: 0,
