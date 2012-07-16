@@ -35,6 +35,7 @@ define(
     "src/HoleEntity",
     "src/CongratulationsScreen",
     "src/AudioController",
+    "src/LoadingScreen",
   ],
   function (
     me,
@@ -71,7 +72,8 @@ define(
     FroggyEntity,
     HoleEntity,
     CongratulationsScreen,
-    audioController
+    audioController,
+    LoadingScreen
   ) {
     
   var app = {
@@ -81,6 +83,8 @@ define(
       audioController.init();
       me.loader.onload = this.loaded.bind(this);
       me.loader.preload(resources);
+      
+      me.state.set(me.state.LOADING, new LoadingScreen());
       me.state.change(me.state.LOADING);
     },
     loaded: function () {

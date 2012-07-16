@@ -2,6 +2,11 @@ define(function () {
   
   var resources = [
     {
+      name: "loading_bg",
+      type: "image",
+      src: "images/loading_bg.gif"
+    },
+    {
       name: "tiles",
       type: "image",
       src: "images/tiles.gif"
