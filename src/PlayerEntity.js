@@ -285,7 +285,7 @@ define(
       var splashY = this.pos.y + 10;
 
       var drown = new me.Tween(this.pos)
-        .to({y: trigger.pos.y + 18}, 800)
+        .to({y: trigger.pos.y + 18}, 500)
         .onComplete(function () {
           me.game.remove(self);
           var splash = new SplashEntity(splashX, splashY);
@@ -297,6 +297,8 @@ define(
         });
       
       drown.start();
+      
+      me.audio.play("drown");
     },
     
     fallIntoPit: function (trigger) {
