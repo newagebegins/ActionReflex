@@ -554,6 +554,12 @@ define(function () {
       src: "audio/",
       channel: 1
     },
+    {
+      name: "tube",
+      type: "audio",
+      src: "audio/",
+      channel: 1
+    },
   ];
   
   return resources;

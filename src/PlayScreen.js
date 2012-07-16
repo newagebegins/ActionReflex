@@ -194,17 +194,27 @@ define(
         this.spawnPosition = {x: tube.pos.x, y: BALL_FLOOR_Y};
 
         var tubeInitialY = tube.pos.y;
-        var tubeMoveDown = new me.Tween(tube.pos).to({y: 79}, 1200).delay(1000);
-        var ballMoveDown = new me.Tween(global.ball.pos).to({y: BALL_FLOOR_Y}, 1200);
+        var delay = new me.Tween({t: 0})
+          .to({t: 1000}, 1000)
+          .onComplete(function () {
+            me.audio.play("tube");
+          });
+        var tubeMoveDown = new me.Tween(tube.pos).to({y: 79}, 1200);
+        var ballMoveDown = new me.Tween(global.ball.pos)
+          .to({y: BALL_FLOOR_Y}, 1200)
+          .onComplete(function () {
+            me.audio.play("tube");
+          });
         var tubeMoveUp = new me.Tween(tube.pos)
           .to({y: tubeInitialY}, 1200)
           .onComplete(function () {
             global.ballState = "normal";
           });
-
+          
+        delay.chain(tubeMoveDown);
         tubeMoveDown.chain(ballMoveDown);
         ballMoveDown.chain(tubeMoveUp);
-        tubeMoveDown.start();
+        delay.start();
       }
       else {
         global.ball.pos.x = this.spawnPosition.x;

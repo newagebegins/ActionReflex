@@ -423,6 +423,14 @@ define(
       var ballUp = new me.Tween(this.pos).to({y: tube.pos.y + 10}, 1200);
       var tubeUp = new me.Tween(tube.pos).to({y: tubeInitialY}, 1200);
       
+      align.onComplete(function () {
+        me.audio.play("tube");
+      });
+      
+      ballUp.onComplete(function () {
+        me.audio.play("tube");
+      });
+      
       tubeUp.onComplete(function () {
         var award = new TimeAwardEntity();
         me.game.add(award, 1);
