@@ -33,6 +33,7 @@ define(
     "src/ExitEntity",
     "src/FroggyEntity",
     "src/HoleEntity",
+    "src/CongratulationsScreen",
   ],
   function (
     me,
@@ -67,7 +68,8 @@ define(
     StartEntity,
     ExitEntity,
     FroggyEntity,
-    HoleEntity
+    HoleEntity,
+    CongratulationsScreen
   ) {
     
   var app = {
@@ -82,6 +84,7 @@ define(
       me.state.set(me.state.MENU, new TitleScreen());
       me.state.set(me.state.PLAY, new PlayScreen());
       me.state.set(me.state.GAMEOVER, new GameOverScreen());
+      me.state.set(me.state.GAME_END, new CongratulationsScreen());
 
       me.entityPool.add("flag", FlagEntity);
       me.entityPool.add("cannon", CannonEntity);

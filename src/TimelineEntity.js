@@ -13,9 +13,7 @@ define(["src/me", "src/config", "src/global"], function (me, config, global) {
       }
       
       if (me.game.HUD.getItemValue("timeline") <= 0) {
-        var scrNum = parseInt(me.levelDirector.getCurrentLevelId().match(/scr0*([0-9]*)/)[1]);
-        me.gamestat.setValue("completed", ((100 * scrNum) / config.screensTotal).round(0));
-        
+        me.state.current().calculateCompleted();
         me.state.change(me.state.GAMEOVER);
         return false;
       }

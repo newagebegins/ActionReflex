@@ -221,9 +221,20 @@ define(
     proceedToNextArea: function () {
       global.ballState = "normal";
       var exit = me.game.getEntityByName("exit")[0];
-      this.loadLevel(exit.to);
+      if (exit.to == "congratulations") {
+        this.calculateCompleted();
+        me.state.change(me.state.GAME_END);
+      }
+      else {
+        this.loadLevel(exit.to);
+        this.resetLevel();
+      }
       me.game.HUD.setItemValue("timeline", config.timelineWidth);
-      this.resetLevel();
+    },
+    
+    calculateCompleted: function () {
+      var scrNum = parseInt(me.levelDirector.getCurrentLevelId().match(/scr0*([0-9]*)/)[1]);
+      me.gamestat.setValue("completed", ((100 * scrNum) / config.screensTotal).round(0));
     },
     
   });

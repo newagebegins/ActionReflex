@@ -7,11 +7,11 @@ define(["src/me"], function (me) {
       height: 384,
     },
     fontSize: 28,
-    initialScreen: me.state.PLAY,
+    initialScreen: me.state.MENU,
     ballAppearThroughTubeAnimation: true,
-    startScreen: "scr074",
+    startScreen: "scr001",
 
-//    startPosition: {x:444, y:192},
+//    startPosition: {x:180, y:192},
     startPosition: null,
     
     initialScore: 0,

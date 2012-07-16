@@ -56,7 +56,7 @@
   <object name="magnet" x="352" y="64" width="48" height="48"/>
   <object name="exit" x="128" y="192" width="32" height="32">
    <properties>
-    <property name="to" value="scr026"/>
+    <property name="to" value="congratulations"/>
    </properties>
   </object>
  </objectgroup>
