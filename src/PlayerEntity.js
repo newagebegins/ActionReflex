@@ -20,7 +20,7 @@ define(
       
   var MAX_Y_VELOCITY = 11;
   var INITIAL_Y_VELOCITY = 4;
-  var APPEAR_DISAPPEAR_DURATION = 1200;
+  var APPEAR_DISAPPEAR_DURATION = 1000;
   var MAX_X_VEL_COEFF = 0.63;
 
   var PlayerEntity = me.ObjectEntity.extend({
@@ -315,12 +315,14 @@ define(
       this.vel.x = 0;
 
       var fall = new me.Tween(this.pos)
-        .to({y: trigger.pos.y + 18}, 800)
+        .to({y: trigger.pos.y + 18}, 500)
         .onComplete(function () {
-          self.onAfterDeath();
+          util.delay(self.onAfterDeath.bind(self), 300);
         });
       
       fall.start();
+      
+      me.audio.play("drown");
     },
     
     suck: function (pad) {
