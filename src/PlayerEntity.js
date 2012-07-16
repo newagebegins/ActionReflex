@@ -195,6 +195,7 @@ define(
           else if (me.game.HUD.getItemValue("buoy") > 0) {
             me.game.HUD.updateItemValue("buoy", -1);
             this.hasBuoy = true;
+            this.vel.y = 0;
           }
           else if (global.ballState != "drown") {
             this.drown(res.obj);
