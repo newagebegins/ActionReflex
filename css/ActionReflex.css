@@ -6,6 +6,9 @@ body {
   background-color: black;
   font-family: editundo;
 }
+#info {
+  overflow: auto;
+}
 #info, #app {
   width: 512px;
   margin: 0 auto;
