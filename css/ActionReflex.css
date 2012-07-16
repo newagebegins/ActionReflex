@@ -10,6 +10,17 @@ body {
   width: 512px;
   margin: 0 auto;
 }
+#audio {
+  float: left;
+}
+#toggleAudio {
+  background-image: url("../images/audio_icon.gif");
+  background-position: 0 3px;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  text-decoration: none;
+  color: #00C5C5;
+}
 #fps {
   float: right;
 }

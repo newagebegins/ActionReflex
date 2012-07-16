@@ -34,6 +34,7 @@ define(
     "src/FroggyEntity",
     "src/HoleEntity",
     "src/CongratulationsScreen",
+    "src/AudioController",
   ],
   function (
     me,
@@ -69,13 +70,15 @@ define(
     ExitEntity,
     FroggyEntity,
     HoleEntity,
-    CongratulationsScreen
+    CongratulationsScreen,
+    audioController
   ) {
     
   var app = {
     onload: function () {
       me.video.init("app", config.display.width, config.display.height, false, 1.0);
       me.audio.init("mp3,ogg");
+      audioController.init();
       me.loader.onload = this.loaded.bind(this);
       me.loader.preload(resources);
       me.state.change(me.state.LOADING);
