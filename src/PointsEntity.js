@@ -17,6 +17,7 @@ define(["src/me", "src/global", "src/ScoreManager"], function (me, global, score
       this.collidable = false;
       global.collectedPoints[this.GUID] = true;
       me.game.remove(this);
+      me.audio.play("points");
     },
     
   });

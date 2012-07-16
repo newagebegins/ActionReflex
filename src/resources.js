@@ -578,6 +578,12 @@ define(function () {
       src: "audio/",
       channel: 1,
     },
+    {
+      name: "points",
+      type: "audio",
+      src: "audio/",
+      channel: 1,
+    },
   ];
   
   return resources;
