@@ -3,8 +3,12 @@
   src: url('../fonts/editundo.ttf');
 }
 body {
-  background-color: gray;
+  background-color: black;
   font-family: editundo;
+}
+#info, #app {
+  width: 512px;
+  margin: 0 auto;
 }
 #fps {
   float: right;
