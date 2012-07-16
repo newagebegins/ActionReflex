@@ -117,9 +117,11 @@ define(
       
       if (collision.y < 0) {
         this.maxVel.y -= 2;
+        me.audio.play("bounce2");
       }
       
       if (collision.y && falling) {
+        me.audio.play("bounce2");
         if (global.listenBallKeys && me.input.isKeyPressed('jump') && movedY) {
           this.maxVel.y += 3;
           if (this.maxVel.y > MAX_Y_VELOCITY) {
@@ -163,6 +165,7 @@ define(
       if (collision.x && !collision.y) {
         // bounce off walls
         this.vel.x = -this.lastVel.x;
+        me.audio.play("bounce2");
       }
 
       this.animationspeed = this.vel.x == 0 ? 0 : 1 / Math.abs(this.vel.x);

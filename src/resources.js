@@ -552,19 +552,25 @@ define(function () {
       name: "bounce",
       type: "audio",
       src: "audio/",
-      channel: 1
+      channel: 1,
+    },
+    {
+      name: "bounce2",
+      type: "audio",
+      src: "audio/",
+      channel: 2
     },
     {
       name: "tube",
       type: "audio",
       src: "audio/",
-      channel: 1
+      channel: 1,
     },
     {
       name: "disappear",
       type: "audio",
       src: "audio/",
-      channel: 1
+      channel: 1,
     },
   ];
   
