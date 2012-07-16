@@ -248,6 +248,7 @@ define(
       var timeline = me.game.getEntityByName("timeline")[0];
       timeline.penalty();
       me.state.current().reloadLevel();
+      me.audio.play("disappear");
       global.ballState = "appearAfterDeath";
       me.state.current().resetLevel();
     },
@@ -258,6 +259,7 @@ define(
     },
     
     disappear: function () {
+      me.audio.play("disappear");
       this.setCurrentAnimation("disappear");
       global.ballState = "disappear";
       util.delay(this.onAfterDeath.bind(this), APPEAR_DISAPPEAR_DURATION);

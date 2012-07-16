@@ -560,6 +560,12 @@ define(function () {
       src: "audio/",
       channel: 1
     },
+    {
+      name: "disappear",
+      type: "audio",
+      src: "audio/",
+      channel: 1
+    },
   ];
   
   return resources;
