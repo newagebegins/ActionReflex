@@ -32,10 +32,13 @@ define(["src/me"], function (me) {
         else {
           this.flipX(false);
         }
+        
+        me.audio.play("bounce");
       }
       
       if (collision.y) {
         this.vel.y = -this.lastVel.y;
+        me.audio.play("bounce");
       }
       
       this.lastVel = this.vel.clone();

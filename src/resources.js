@@ -546,6 +546,14 @@ define(function () {
       type: "tmx",
       src: "maps/scr075.tmx"
     },
+    
+    // audio
+    {
+      name: "bounce",
+      type: "audio",
+      src: "audio/",
+      channel: 1
+    },
   ];
   
   return resources;
