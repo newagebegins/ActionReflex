@@ -438,7 +438,7 @@ define(
       global.ballState = "fallIntoHole";
       
       var align = new me.Tween(this.pos).to({x: hole.pos.x, y: hole.pos.y}, 200);
-      var moveDown = new me.Tween(this.pos).to({y: hole.pos.y + 30}, 200);
+      var moveDown = new me.Tween(this.pos).to({y: hole.pos.y + 32}, 200);
       
       moveDown.onComplete(function () {
         global.ballState = "normal";
