@@ -584,6 +584,12 @@ define(function () {
       src: "audio/",
       channel: 1,
     },
+    {
+      name: "timeaward",
+      type: "audio",
+      src: "audio/",
+      channel: 2,
+    },
   ];
   
   return resources;

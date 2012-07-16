@@ -31,6 +31,7 @@ define(
         if (this.timer >= this.duration) {
           this.timer = 0;
           scoreManager.add(5);
+          me.audio.play("timeaward");
         }
       }
     },
