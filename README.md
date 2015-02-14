@@ -3,7 +3,7 @@ Action Reflex - An HTML5 clone of the 1986 ZX Spectrum game
 
 [Play](http://newagebegins.github.com/ActionReflex/ActionReflex.html)
 
-Works best in Firefox, Chrome and IE 9.
+Works best in Firefox and Chrome.
 
 This game was developed using [melonJS](http://melonjs.org/)
 

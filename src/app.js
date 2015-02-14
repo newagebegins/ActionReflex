@@ -79,7 +79,7 @@ define(
   var app = {
     onload: function () {
       me.video.init("app", config.display.width, config.display.height, false, 1.0);
-      me.audio.init("mp3,ogg");
+      me.audio.init("ogg");
       audioController.init();
       me.loader.onload = this.loaded.bind(this);
       me.loader.preload(resources);
